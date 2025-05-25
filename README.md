@@ -1,4 +1,3 @@
-````markdown
 # MY-PORTFOLIO-MAIN
 
 Showcase Your Journey, Inspire Your Future
@@ -75,21 +74,3 @@ Run the project with:
 Using npm:
 ```bash
 npm start
-````
-
-### Testing
-
-My-portfolio-main uses the (test\_framework) test framework. Run the test suite with:
-
-Using npm:
-
-```bash
-npm test
-```
-
------
-
-⬆️ [Return](https://www.google.com/search?q=%23table-of-contents)
-
-```
-```
