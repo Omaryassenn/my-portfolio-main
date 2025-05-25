@@ -4,7 +4,7 @@ import hawkeye from '../assets/hawk.svg';
 import hawkeyeMobile from '../assets/hawksm.svg';
 import onerythme from '../assets/One.svg';
 import neuropulse from '../assets/Neuropulse.svg';
-import fabmarket from '../assets/FABmarket.svg';
+import fabmarket from '../assets/fab.svg';
 import sec from '../assets/secone.svg';
 import stackaroo from '../assets/stack.svg';
 import chic from '../assets/chic.svg';
