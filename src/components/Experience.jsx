@@ -56,9 +56,7 @@ const experiences = [
 
 const Experience = () => {
   const [activeYear, setActiveYear] = useState('2024');
-  const [isDragging, setIsDragging] = useState(false);
   const yearsRef = useRef(null);
-  const timelineRef = useRef(null);
 
   const handleYearClick = (year) => {
     setActiveYear(year);
@@ -93,47 +91,6 @@ const Experience = () => {
     }
   };
 
-  const handleTimelineClick = (e) => {
-    if (timelineRef.current) {
-      const timeline = timelineRef.current;
-      const rect = timeline.getBoundingClientRect();
-      const y = e.clientY - rect.top;
-      const percentage = y / rect.height;
-      const index = Math.min(
-        Math.floor(percentage * experiences.length),
-        experiences.length - 1
-      );
-      const year = experiences[index].year;
-      setActiveYear(year);
-      scrollToYear(year);
-    }
-  };
-
-  const handleTimelineMouseDown = (e) => {
-    setIsDragging(true);
-    handleTimelineClick(e);
-  };
-
-  const handleTimelineMouseMove = (e) => {
-    if (isDragging) {
-      handleTimelineClick(e);
-    }
-  };
-
-  const handleTimelineMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  useEffect(() => {
-    document.addEventListener('mouseup', handleTimelineMouseUp);
-    document.addEventListener('mousemove', handleTimelineMouseMove);
-
-    return () => {
-      document.removeEventListener('mouseup', handleTimelineMouseUp);
-      document.removeEventListener('mousemove', handleTimelineMouseMove);
-    };
-  }, [isDragging]);
-
   useEffect(() => {
     scrollToYear(activeYear);
   }, []);
@@ -156,21 +113,6 @@ const Experience = () => {
               {exp.year}
             </div>
           ))}
-        </div>
-        <div 
-          className="experience-timeline" 
-          ref={timelineRef}
-          onMouseDown={handleTimelineMouseDown}
-        >
-          <div className="timeline-line">
-            <div 
-              className="timeline-indicator"
-              style={{
-                top: `${(experiences.findIndex(exp => exp.year === activeYear) / (experiences.length - 1)) * 100}%`,
-                left: `${(experiences.findIndex(exp => exp.year === activeYear) / (experiences.length - 1)) * 100}%`
-              }}
-            />
-          </div>
         </div>
         <div className="experience-details">
           {activeExperience.jobs.map((job, idx) => (

@@ -25,49 +25,37 @@
 }
 
 .experience-content {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4rem;
   max-width: 1400px;
   margin: 0 auto;
+  padding: 0 2rem;
   position: relative;
-  height: 100%;
-  min-height: 600px;
-
 }
 
 .experience-years {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-start;
-  min-width: 300px;
-  gap: 6rem;
-  padding-inline: 2rem;
-  position: relative;
-  height: 100%;
+  gap: 3rem;
+  padding: 2rem;
+  position: sticky;
+  top: 100px;
+  height: 70vh;
   overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  max-height: calc(100vh - 300px);
-}
-
-.experience-years::-webkit-scrollbar {
-  display: none;
 }
 
 .experience-year {
   font-family: 'Poppins', sans-serif;
-  font-size: 100px;
+  font-size: 6.5rem;
   font-weight: 600;
   font-style: italic;
   color: var(--secondary-text);
   opacity: 0.3;
-  padding-left: 5rem;
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
   cursor: pointer;
   position: relative;
-  z-index: 1;
 }
 
 .experience-year:hover {
@@ -84,75 +72,23 @@
 .experience-year.active::before {
   content: '';
   position: absolute;
-  bottom: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 300px;
-  height: 200px;
-  background: url('../assets/activeyear.svg') no-repeat center;
-  background-size: contain;
-  z-index: -1;
-  opacity: 0.5;
-}
-
-.experience-timeline {
-  position: relative;
-  width: 2px;
-  background: rgba(var(--text-rgb), 0.1);
-  margin: 0 3rem;
-  height: 100%;
-  min-height: calc(100vh - 300px);
-  cursor: pointer;
-  z-index: 2;
-}
-
-.timeline-line {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(var(--text-rgb), 0.1);
-  border-radius: 1px;
-}
-
-.timeline-indicator {
-  position: absolute;
-  left: -2px;
+  display: none;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
   width: 6px;
-  height: 100%;
+  height: 40px;
   background: var(--accent-color);
   border-radius: 3px;
-  transition: all 0.3s ease;
-  cursor: grab;
   box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.5);
 }
 
-.timeline-indicator:hover {
-  box-shadow: 0 0 30px rgba(var(--accent-rgb), 0.7);
-}
-
-.timeline-indicator:active {
-  cursor: grabbing;
-  box-shadow: 0 0 40px rgba(var(--accent-rgb), 0.9);
-}
-
 .experience-details {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 6rem;
+  gap: 4rem;
+  justify-content: center;
   padding: 2rem 0;
-  overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  height: 100%;
-  max-height: calc(100vh - 300px);
-}
-
-.experience-details::-webkit-scrollbar {
-  display: none;
 }
 
 .experience-detail-card {
@@ -188,7 +124,6 @@
 .exp-title {
   font-size: 46px;
   font-family: 'Poppins', sans-serif;
- 
   color: var(--text-color);
   margin-bottom: 1.5rem;
   line-height: 1.2;
@@ -196,11 +131,10 @@
 
 .exp-title span {
   color: var(--text-color);
-
 }
 
 .exp-desc {
-  color: #747474;
+  color: var(--secondary-text);
   font-family: 'Poppins', sans-serif;
   font-size: 22px;
   font-weight: 400;
@@ -219,17 +153,12 @@
   }
 
   .experience-content {
-    padding: 0;
-    min-height: 500px;
+    gap: 3rem;
+    padding: 0 1rem;
   }
 
   .experience-year {
-    font-size: 80px;
-    padding-left: 2rem;
-  }
-
-  .experience-year.active {
-    font-size: 80px;
+    font-size: 3rem;
   }
 
   .exp-title {
@@ -245,82 +174,54 @@
   }
 
   .experience-details {
-    gap: 4rem;
+    gap: 3rem;
   }
 }
 
 @media (max-width: 768px) {
   .experience-section {
     padding: 3rem 1rem;
-    margin-bottom: 50px;
   }
-
+  .experience-years::-webkit-scrollbar {
+    width: 3px;
+  }
   .experience-title {
-    font-size: 48px;
+    font-size: 40px;
     padding: 0 0 2rem 0;
   }
 
   .experience-content {
-    flex-direction: column;
-    height: auto;
-    min-height: auto;
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
   .experience-years {
     flex-direction: row;
-    justify-content: flex-start;
-    padding: 1rem 0;
     overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.5rem;
     gap: 2rem;
-    min-width: auto;
-    width: 100%;
-    max-height: none;
+    position: relative;
+    top: 0;
+    height: auto;
   }
 
   .experience-year {
-    font-size: 48px;
-    padding-left: 0;
-  }
-
-  .experience-year.active {
-    font-size: 48px;
+    font-size: 2.5rem;
+    white-space: nowrap;
   }
 
   .experience-year.active::before {
-    width: 150px;
-    height: 100px;
-    bottom: -20px;
-  }
-
-  .experience-timeline {
-    width: 100%;
-    height: 10px;
-    margin: 2rem 0;
-    min-height: auto;
-    border-radius: 100px;
-  }
-
-  .timeline-line {
-    height: 100%;
-    border-radius: 100px;
-  }
-
-  .timeline-indicator {
-    width: 40px;
-    height: 10px;
-    top: 0;
-    left: 0;
+    left: 50%;
+    top: auto;
+    bottom: -10px;
     transform: translateX(-50%);
-  }
-
-  .experience-details {
-    padding: 1rem 0;
-    gap: 3rem;
-    max-height: none;
+    width: 40px;
+    height: 4px;
   }
 
   .exp-title {
-    font-size: 32px;
+    font-size: 28px;
   }
 
   .exp-date {
@@ -330,6 +231,11 @@
   .exp-desc {
     font-size: 16px;
   }
+
+  .experience-years::-webkit-scrollbar {
+    height: 8px;
+    width: auto;
+  }
 }
 
 @media (max-width: 480px) {
@@ -338,82 +244,42 @@
   }
 
   .experience-title {
-    font-size: 36px;
-    padding: 0 0 1.5rem 0;
-  }
-
-  .experience-years {
-    padding: 0.5rem 0;
-    gap: 1.5rem;
+    font-size: 32px;
   }
 
   .experience-year {
-    font-size: 36px;
-  }
-
-  .experience-year.active {
-    font-size: 36px;
-  }
-
-  .experience-year.active::before {
-    width: 100px;
-    height: 60px;
-    bottom: -15px;
-  }
-
-  .experience-timeline {
-    margin: 1.5rem 0;
-  }
-
-  .timeline-indicator {
-    width: 32px;
-    height: 10px;
-  }
-
-  .experience-details {
-    padding: 0.5rem 0;
-    gap: 2rem;
+    font-size: 2rem;
   }
 
   .exp-title {
     font-size: 24px;
-    margin-bottom: 1rem;
   }
 
   .exp-date {
     font-size: 16px;
-    margin-bottom: 0.5rem;
   }
 
   .exp-desc {
-    font-size: 14px;
-    line-height: 1.5;
+    font-size: 15px;
   }
-  .experience-year:hover {
-    opacity: 0.8;
-    transform: translateY(-10px);
-  }
-  
-  .experience-year.active {
-    color: var(--text-color);
-    opacity: 1;
-    position: relative;
-  }
-  
-  .experience-year.active::before {
-    content: '';
-    position: absolute;
-    bottom: -40px;
-    left: 50%;
-    transform: translateY(-50%);
-    width: 300px;
-    height: 200px;
-    background: url('../assets/activeyear.svg') no-repeat center;
-    background-size: contain;
-    z-index: -1;
-    opacity: 0.5;
-  }
-} 
-.experience-timeline {
-  touch-action: pan-y;
+}
+
+/* Add custom scrollbar styles */
+.experience-years::-webkit-scrollbar {
+  width: 5px;
+}
+
+.experience-years::-webkit-scrollbar-track {
+  background: #474747;
+  border-radius: 4px;
+}
+
+.experience-years::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-radius: 4px;
+  height: 10px;
+}
+
+.experience-years::-webkit-scrollbar-thumb:hover {
+  background: #1eb1c2;
 }
