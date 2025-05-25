@@ -1,11 +1,5 @@
 # MY-PORTFOLIO-MAIN
 
-Showcase Your Journey, Inspire Your Future
-
-[![Last Commit](https://img.shields.io/github/last-commit/gohar94/my-portfolio-main?style=flat-square&logo=github&label=last%20commit&color=blue)](https://github.com/gohar94/my-portfolio-main/commits)
-[![CSS](https://img.shields.io/github/languages/top/gohar94/my-portfolio-main?style=flat-square&logo=css3&logoColor=white&label=CSS&color=563d7c)](https://github.com/gohar94/my-portfolio-main)
-[![Languages](https://img.shields.io/github/languages/count/gohar94/my-portfolio-main?style=flat-square&label=languages&color=blue)](https://github.com/gohar94/my-portfolio-main)
-
 Built with the tools and technologies:
 
 [![JSON](https://img.shields.io/badge/JSON-000000?style=flat-square&logo=json&logoColor=white)](https://www.json.org/json-en.html)
