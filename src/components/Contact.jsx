@@ -177,17 +177,14 @@ const Contact = () => {
             </div>
 
             <div className="social-links">
-              <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://dribbble.com/OmarYassenn" target="_blank" rel="noopener noreferrer">
                 <FaDribbble />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+              <a href="www.linkedin.com/in/omar-yassen" target="_blank" rel="noopener noreferrer">
                 <FaLinkedinIn />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.instagram.com/omaryassenn/" target="_blank" rel="noopener noreferrer">
                 <FaInstagram />
-              </a>
-              <a href="https://discord.com" target="_blank" rel="noopener noreferrer">
-                <FaDiscord />
               </a>
             </div>
           </div>

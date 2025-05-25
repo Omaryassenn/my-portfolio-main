@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Work.css';
 import hawkeye from '../assets/hawk.svg';
+import hawkeyeMobile from '../assets/hawksm.svg';
 import onerythme from '../assets/One.svg';
 import neuropulse from '../assets/Neuropulse.svg';
 import fabmarket from '../assets/FABmarket.svg';
@@ -26,7 +27,10 @@ const Work = () => {
     {
       title: 'Hawk-Eye Website',
       role: 'UI/UX Designer',
-      image: hawkeye,
+      image: {
+        desktop: hawkeye,
+        mobile: hawkeyeMobile
+      },
       size: 'small',
       link: 'https://dribbble.com/shots/25752521-HawkEye-Revolutionizing-RFP-Analysis-with-AI',
     },
@@ -151,12 +155,31 @@ const Work = () => {
           <div key={index} className={`work-card ${project.size}`}>
             <div className="card-content">
               {!loadedImages[project.title] && <div className="skeleton-loader" />}
-              <img
-                src={project.image}
-                alt={project.title}
-                style={{ opacity: loadedImages[project.title] ? 1 : 0 }}
-                onLoad={() => handleImageLoad(project.title)}
-              />
+              {typeof project.image === 'object' ? (
+                <>
+                  <img
+                    src={project.image.desktop}
+                    alt={project.title}
+                    className="desktop-image"
+                    style={{ opacity: loadedImages[project.title] ? 1 : 0 }}
+                    onLoad={() => handleImageLoad(project.title)}
+                  />
+                  <img
+                    src={project.image.mobile}
+                    alt={project.title}
+                    className="mobile-image"
+                    style={{ opacity: loadedImages[project.title] ? 1 : 0 }}
+                    onLoad={() => handleImageLoad(project.title)}
+                  />
+                </>
+              ) : (
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  style={{ opacity: loadedImages[project.title] ? 1 : 0 }}
+                  onLoad={() => handleImageLoad(project.title)}
+                />
+              )}
               <div className="card-overlay">
                 <div className="card-info">
                   <p className="card-role">{project.role}</p>
