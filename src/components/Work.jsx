@@ -19,6 +19,7 @@ import Pagination from './Pagination';
 
 const Work = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [loadedImages, setLoadedImages] = useState({});
   const projectsPerPage = 4;
 
   const allProjects = [
@@ -120,9 +121,6 @@ const Work = () => {
       size: 'medium',
       link: 'https://dribbble.com/shots/25827878-TalentCare-for-job-search',
     },
-
-    
-    
   ];
 
   const totalPages = Math.ceil(allProjects.length / projectsPerPage);
@@ -130,9 +128,16 @@ const Work = () => {
   const indexOfFirstProject = indexOfLastProject - projectsPerPage;
   const currentProjects = allProjects.slice(indexOfFirstProject, indexOfLastProject);
 
+  const handleImageLoad = (projectTitle) => {
+    setLoadedImages(prev => ({
+      ...prev,
+      [projectTitle]: true
+    }));
+  };
+
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
-    // Scroll to top of work section smoothly
+    setLoadedImages({}); // Reset loaded images state when changing page
     document.querySelector('.work-section').scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -142,28 +147,33 @@ const Work = () => {
         My <span>Work</span>
       </h2>
       <div className="work-grid">
-      {currentProjects.map((project, index) => (
-       
-  <div key={index} className={`work-card ${project.size}`}>
-    <div className="card-content">
-      <img src={project.image} alt={project.title} />
-      <div className="card-overlay">
-        <div className="card-info">
-          <p className="card-role">{project.role}</p>
-          <h3 className="card-title">{project.title}</h3>
-        </div>
-        <a 
-          href={project.link} 
-          className="card-arrow" 
-          target="_blank" 
-          rel="noopener noreferrer"
-        >
-          <FiArrowUpRight />
-        </a>
-      </div>
-    </div>
-  </div>
-))}
+        {currentProjects.map((project, index) => (
+          <div key={index} className={`work-card ${project.size}`}>
+            <div className="card-content">
+              {!loadedImages[project.title] && <div className="skeleton-loader" />}
+              <img
+                src={project.image}
+                alt={project.title}
+                style={{ opacity: loadedImages[project.title] ? 1 : 0 }}
+                onLoad={() => handleImageLoad(project.title)}
+              />
+              <div className="card-overlay">
+                <div className="card-info">
+                  <p className="card-role">{project.role}</p>
+                  <h3 className="card-title">{project.title}</h3>
+                </div>
+                <a 
+                  href={project.link} 
+                  className="card-arrow" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  <FiArrowUpRight />
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
       <Pagination 
         currentPage={currentPage}
