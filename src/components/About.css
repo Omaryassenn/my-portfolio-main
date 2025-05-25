@@ -274,7 +274,9 @@
   position: relative;
   z-index: 1;
 }
-
+.smavatar{
+  display: none;
+}
 @media (max-width: 1024px) {
   .about-main {
     flex-direction: column;
@@ -298,7 +300,12 @@
   .section-title {
     font-size: 2rem;
   }
-
+.lgavatar{
+  display: none;
+}
+.smavatar{
+  display: block;
+}
   .feature-cards {
     grid-template-columns: 1fr;
   }

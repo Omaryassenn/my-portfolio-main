@@ -5,7 +5,7 @@ import ellipse from '../assets/about-card-dark-ellipse.svg';
 import sparkles from '../assets/sparkles.svg';
 import { FiDownload, FiTarget, FiUsers, FiCode } from 'react-icons/fi';
 import Button from './Button';
-
+import smavatar from '../assets/avatarmobile.svg';
 const About = () => {
   const [glowPosition, setGlowPosition] = useState({ x: 0, y: 0 });
 
@@ -45,7 +45,8 @@ const About = () => {
         
         <div className="about-main">
           <div className="about-image">
-            <img src={avatar} alt="Omar's profile" />
+            <img src={avatar} alt="Omar's profile" className='lgavatar' />
+            <img src={smavatar} alt="Omar's profile" className="smavatar" />
           </div>
           
           <div className="about-text">
