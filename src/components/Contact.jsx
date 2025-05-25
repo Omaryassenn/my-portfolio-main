@@ -5,6 +5,7 @@ import { FaDribbble, FaLinkedinIn, FaInstagram, FaDiscord } from 'react-icons/fa
 import contactGlow from '../assets/contactglow.svg';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,13 +22,52 @@ const Contact = () => {
       });
 
       if (response.ok) {
-        toast.success("Message sent successfully!");
+        toast.success("Message sent successfully!", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          style: {
+            background: 'var(--card-bg)',
+            color: 'var(--text-color)',
+            borderRadius: '12px',
+            border: '1px solid rgba(var(--text-rgb), 0.1)',
+            fontSize: '1rem',
+            fontFamily: 'Inter, sans-serif',
+          },
+        });
         e.target.reset(); // Clear form
       } else {
-        toast.error("Failed to send message. Please try again.");
+        toast.error("Failed to send message. Please try again.", {
+          position: "top-center",
+          theme: "dark",
+          style: {
+            background: 'var(--card-bg)',
+            color: 'var(--text-color)',
+            borderRadius: '12px',
+            border: '1px solid rgba(var(--text-rgb), 0.1)',
+            fontSize: '1rem',
+            fontFamily: 'Inter, sans-serif',
+          },
+        });
       }
     } catch (error) {
-      toast.error("An error occurred. Please try again later.");
+      toast.error("An error occurred. Please try again later.", {
+        position: "top-center",
+        theme: "dark",
+        style: {
+          background: 'var(--card-bg)',
+          color: 'var(--text-color)',
+          borderRadius: '12px',
+          border: '1px solid rgba(var(--text-rgb), 0.1)',
+          fontSize: '1rem',
+          fontFamily: 'Inter, sans-serif',
+        },
+      });
     }
   };
 
@@ -36,7 +76,29 @@ const Contact = () => {
     <section className="contact-section" id="contact">
       
       <div className="contact-container">
-      <ToastContainer />
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        style={{
+          top: '20px',
+        }}
+        toastStyle={{
+          background: 'var(--card-bg)',
+          color: 'var(--text-color)',
+          borderRadius: '12px',
+          border: '1px solid rgba(var(--text-rgb), 0.1)',
+          fontSize: '1rem',
+          fontFamily: 'Inter, sans-serif',
+        }}
+      />
         <img src={contactGlow} alt="" className="contact-glow" />
         <h2 className="contact-title">Let's build something great together.</h2>
         <p className="contact-subtitle">

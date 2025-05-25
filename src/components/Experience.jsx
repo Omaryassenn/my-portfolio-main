@@ -6,7 +6,7 @@ const experiences = [
     year: '2022',
     jobs: [
       {
-        date: 'Jan 2022 - Dec 2022',
+        date: 'Jan 2022 - Present',
         title: 'Frontend Developer & UI Designer',
         company: 'Freelancing',
         description: 'Collaborated with startups to design and build responsive, user-first websites and web apps.',

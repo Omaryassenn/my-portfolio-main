@@ -465,4 +465,61 @@
     height: 28px;
     font-size: 0.9rem;
   }
+
+  .Toastify__toast-container {
+    width: 90% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    margin: 0 !important;
+  }
+  
+  .Toastify__toast {
+    margin-bottom: 1rem;
+    border-radius: 12px !important;
+  }
+}
+
+/* Toast Customization */
+.Toastify__toast-container {
+  z-index: 10000000;
+}
+
+.Toastify__toast {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(var(--text-rgb), 0.1);
+}
+
+.Toastify__toast-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+.Toastify__progress-bar {
+  background: linear-gradient(
+    to right,
+    var(--accent-color),
+    var(--text-color)
+  );
+}
+
+.Toastify__close-button {
+  color: var(--text-color);
+  opacity: 0.7;
+}
+
+.Toastify__close-button:hover {
+  opacity: 1;
+}
+
+.Toastify__toast--success {
+  background: var(--card-bg) !important;
+  border-left: 4px solid var(--accent-color);
+}
+
+.Toastify__toast--error {
+  background: var(--card-bg) !important;
+  border-left: 4px solid #ff4444;
 } 

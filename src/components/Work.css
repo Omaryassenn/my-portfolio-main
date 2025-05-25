@@ -69,6 +69,12 @@
   opacity: 0;
   position: relative;
   z-index: 1;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+  will-change: transform;
 }
 
 .skeleton-loader {
@@ -291,6 +297,11 @@
   .work-card.medium,
   .work-card.big {
     height: 300px;
+  }
+
+  .card-content img {
+    transform: translateZ(0);
+    will-change: transform;
   }
 
   .card-overlay {

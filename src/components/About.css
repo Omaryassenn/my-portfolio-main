@@ -121,6 +121,11 @@
   border-radius: 50%;
   object-fit: cover;
   background-color: #8b8b8b;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
 }
 
 .about-text {
@@ -338,11 +343,12 @@
     gap: 1.5rem;
   }
   .about-image {
-    flex: 0 0 120px;
+    flex: 0 0 200px;
   }
   .about-image img {
-    width: 120px;
-    height: 120px;
+    width: 200px;
+    height: 200px;
+    transform: translateZ(0);
   }
   .about-text p {
     font-size: 1rem;
