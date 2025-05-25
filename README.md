@@ -74,3 +74,9 @@ Run the project with:
 Using npm:
 ```bash
 npm start
+
+Testing
+My-portfolio-main uses the (test_framework) test framework.
+
+Using npm:
+npm test
