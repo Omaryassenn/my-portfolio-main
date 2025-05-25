@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 import darkLogo from '../assets/Logoo.svg';
 import lightLogo from '../assets/Logoo.svg';
-import { FiSun, FiMoon, FiMenu, FiX } from 'react-icons/fi';
+import { FiMenu, FiX, FiArrowUpRight } from 'react-icons/fi';
 import { useTheme } from '../context/ThemeContext';
+import Button from './Button';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const { isDarkMode, toggleTheme } = useTheme();
+  const { isDarkMode } = useTheme();
   
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : 'auto';
@@ -22,6 +23,12 @@ const Navbar = () => {
   }, []);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
+
+  const handleContactClick = (e) => {
+    e.preventDefault();
+    document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+    setMenuOpen(false);
+  };
 
   return (
     <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
@@ -43,13 +50,14 @@ const Navbar = () => {
           <a href="#work" onClick={() => setMenuOpen(false)}>Work</a>
           <a href="#skills" onClick={() => setMenuOpen(false)}>Skills</a>
           <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
-          <button 
-            className="theme-toggle" 
-            onClick={toggleTheme} 
-            aria-label={`Switch to ${isDarkMode ? 'light' : 'dark'} mode`}
+          <Button 
+            variant="primary" 
+            icon={FiArrowUpRight}
+            onClick={handleContactClick}
+            className="nav-button"
           >
-            {isDarkMode ? <FiSun /> : <FiMoon />}
-          </button>
+            Let's Talk
+          </Button>
         </div>
       </div>
     </nav>

@@ -1,20 +1,20 @@
 :root {
   /* Light mode variables */
-  --light-bg: #ffffff;
-  --light-text: #141414;
-  --light-secondary-text: #747474;
-  --light-accent: #26e9ff;
-  --light-card-bg: #f5f5f5;
-  --light-footer-bg: #f0f0f01f;
-  --light-nav-bg: rgba(255, 255, 255, 0.192);
-  --light-about-bg: #F0F0F0;
-  --light-feature-card-bg: rgba(255, 255, 255, 0.8);
+  --light-bg: #f8f9fa;
+  --light-text: #1a1a1a;
+  --light-secondary-text: #4a5568;
+  --light-accent: #0099ff;
+  --light-card-bg: #ffffff;
+  --light-footer-bg: #f1f3f5;
+  --light-nav-bg: rgba(248, 249, 250, 0.85);
+  --light-about-bg: #ffffff;
+  --light-feature-card-bg: rgba(255, 255, 255, 0.95);
 
   /* RGB values for transparency */
-  --light-bg-rgb: 255, 255, 255;
-  --light-text-rgb: 20, 20, 20;
-  --light-card-bg-rgb: 245, 245, 245;
-  --light-accent-rgb: 38, 233, 255;
+  --light-bg-rgb: 248, 249, 250;
+  --light-text-rgb: 26, 26, 26;
+  --light-card-bg-rgb: 255, 255, 255;
+  --light-accent-rgb: 0, 153, 255;
 }
 
 .dark-mode {
