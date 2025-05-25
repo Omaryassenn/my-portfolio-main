@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Work.css';
-import hawkeye from '../assets/hawk.svg';
+import hawkeye from '../assets/hawksm.svg';
 import hawkeyeMobile from '../assets/hawksm.svg';
 import onerythme from '../assets/One.svg';
 import neuropulse from '../assets/Neuropulse.svg';
