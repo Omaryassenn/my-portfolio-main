@@ -1,0 +1,308 @@
+.work-section {
+ 
+  padding: 6rem 2rem;
+  background-color: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.work-title {
+  font-size: 80px;
+  font-weight: 100;
+  color: var(--text-color);
+  margin-bottom: 4rem;
+  text-align: left;
+}
+
+.work-title span {
+  background: linear-gradient(to right, var(--text-color), var(--accent-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2rem;
+  max-width: 1400px;
+  width: 100%;
+}
+
+.work-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid #3a3a3a;
+  background: var(--card-bg);
+}
+
+/* Card sizes */
+.work-card.small {
+  grid-column: span 4;
+  height: 552px;
+}
+
+.work-card.medium {
+  grid-column: span 6;
+  height: 565px;
+}
+
+.work-card.big {
+  grid-column: span 8;
+  height: 555px;
+}
+
+.card-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.card-content img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2.5rem;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.3) 20%,
+    rgba(0, 0, 0, 0.8) 50%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(10px);
+  height: 30%;
+}
+
+.card-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.4) 30%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.card-info {
+  position: relative;
+  z-index: 2;
+  color: var(--text-color);
+}
+
+.card-role {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.3rem;
+  color: var(--primary-text);
+  margin-bottom: 0.75rem;
+  text-align: left;
+  font-weight: 400;
+}
+
+.card-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 500;
+  margin: 0;
+  color: var(--text-color);
+  text-align: left;
+}
+
+.card-arrow {
+  position: relative;
+  z-index: 2;
+  background: var(--text-color);
+  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.card-arrow svg {
+  width: 24px;
+  height: 24px;
+  color: var(--bg-color);
+  transition: transform 0.3s ease;
+}
+
+/* Enhanced hover effects */
+.work-card:hover .card-content img {
+  transform: scale(1.05);
+}
+
+.work-card:hover .card-overlay {
+  height: 35%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.3) 20%,
+    rgba(0, 0, 0, 0.8) 50%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+}
+
+.work-card:hover .card-arrow {
+  transform: translate(5px, -5px);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.work-card:hover .card-arrow svg {
+  transform: rotate(45deg);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .work-section {
+    padding: 4rem 1.5rem;
+  }
+  
+  .work-card.small,
+  .work-card.medium,
+  .work-card.big {
+    grid-column: span 6;
+    height: 450px;
+  }
+
+  .work-grid {
+    gap: 1.5rem;
+  }
+
+  .card-overlay {
+    padding: 2rem;
+  }
+
+  .card-role {
+    font-size: 1.1rem;
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .work-section {
+    padding: 3rem 1rem;
+    margin-bottom: 50px;
+  }
+
+  .work-title {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  .work-card.small,
+  .work-card.medium,
+  .work-card.big {
+    grid-column: span 12;
+    height: 400px;
+  }
+
+  .work-grid {
+    gap: 1rem;
+  }
+
+  .card-overlay {
+    padding: 1.5rem;
+    height: 35%;
+  }
+
+  .card-role {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+  }
+
+  .card-arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .card-arrow svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .work-section {
+    padding: 2rem 0.5rem;
+  }
+
+  .work-title {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .work-card.small,
+  .work-card.medium,
+  .work-card.big {
+    height: 300px;
+  }
+
+  .card-overlay {
+    padding: 1rem;
+  }
+
+  .card-role {
+    font-size: 0.9rem;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  .card-arrow {
+    width: 36px;
+    height: 36px;
+  }
+
+  .card-arrow svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.skeleton-loader {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(-90deg, #333 0%, #444 50%, #333 100%);
+  background-size: 400% 400%;
+  animation: shimmer 1.2s ease-in-out infinite;
+  border-radius: 20px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

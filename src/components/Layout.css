@@ -1,0 +1,23 @@
+.layout-container {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  padding-top: 80px; /* Add space for navbar */
+}
+
+.section {
+  height: 100vh; /* Adjust height to account for navbar */
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hide scrollbar but keep functionality */
+.layout-container::-webkit-scrollbar {
+  display: none;
+}
+
+.layout-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+} 

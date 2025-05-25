@@ -1,0 +1,161 @@
+@keyframes gradientPulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.hero-section {
+  min-height: 100vh; /* Make hero section take full viewport height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0 2rem; /* Add some padding */
+  text-align: center; /* Center align text for now */
+  box-sizing: border-box;
+  width: 100%;
+  /* overflow: hidden; */ /* Removed to allow gradient to extend */
+}
+.gradient-desktop {
+  display: block;
+}
+
+.gradient-mobile {
+  display: none;
+}
+.gradient-tablet {
+  display: none;
+}
+@media (max-width: 1160px) {
+  .gradient-desktop {
+    display: none;
+  }
+  .gradient-tablet {
+    display: block;
+  }
+  .gradient-mobile {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .gradient-desktop {
+    display: none;
+  }
+  .gradient-tablet {
+    display: none;
+  }
+  .gradient-mobile {
+    display: block;
+  }
+  .hero-background-gradient img {
+    width: auto;
+  
+  }
+}
+
+.hero-background-gradient {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0; /* Adjusted to be behind hero-content */
+  width: 100vw; /* Use viewport width */
+  max-width: 100%;
+  overflow: hidden;
+  animation: gradientPulse 8s ease-in-out infinite; /* Slow, smooth animation */
+}
+
+.hero-background-gradient img {
+  width: 100vw;
+  height: auto;
+  object-fit: cover; /* This will ensure the gradient covers the full area */
+  /* Remove the static opacity as it's now handled by the animation */
+}
+
+.hero-content {
+  position: relative; /* Ensure content is above the gradient */
+  z-index: 1;
+  color: white;
+}
+
+.hero-content h1 {
+  font-size: clamp(2rem, 6vw, 4.5rem); /* Responsive font size */
+  font-weight: 100;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+.hero-content p {
+  font-size: 1.125rem; /* Adjust as needed */
+  margin-bottom: 2rem;
+  max-width: 600px; /* Constrain paragraph width */
+  margin-left: auto;
+  margin-right: auto;
+  color: #949494;
+  font-family: 'Poppins', sans-serif; /* Paragraphs also use Poppins in the image */
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+@media (max-width: 600px) {
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px; /* Pill shape buttons */
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+  /* Font family is Inter, inherited from global styles */
+}
+
+.btn-primary {
+  background-color: #00A9E2; /* Example blue color */
+  color: white;
+  border: 2px solid #00A9E2;
+}
+
+.btn-primary:hover {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.btn-secondary:hover {
+  background-color: white;
+  color: black;
+} 
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 2rem 1rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 2rem .5rem;
+  }
+}

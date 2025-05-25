@@ -1,0 +1,61 @@
+:root {
+  /* Light mode variables */
+  --light-bg: #ffffff;
+  --light-text: #141414;
+  --light-secondary-text: #747474;
+  --light-accent: #26e9ff;
+  --light-card-bg: #f5f5f5;
+  --light-footer-bg: #f0f0f01f;
+  --light-nav-bg: rgba(255, 255, 255, 0.192);
+  --light-about-bg: #F0F0F0;
+  --light-feature-card-bg: rgba(255, 255, 255, 0.8);
+
+  /* RGB values for transparency */
+  --light-bg-rgb: 255, 255, 255;
+  --light-text-rgb: 20, 20, 20;
+  --light-card-bg-rgb: 245, 245, 245;
+  --light-accent-rgb: 38, 233, 255;
+}
+
+.dark-mode {
+  --bg-color: #070707;
+  --text-color: #ffffff;
+  --secondary-text: #747474;
+  --accent-color: #26e9ff;
+  --card-bg: #1a1a1a;
+  --footer-bg: #141414;
+  --nav-bg: rgba(20, 20, 20, 0.137);
+  --about-bg: #0c0c0c;
+  --feature-card-bg: rgba(26, 26, 26, 0.95);
+
+  /* RGB values for transparency */
+  --bg-rgb: 20, 20, 20;
+  --text-rgb: 255, 255, 255;
+  --card-bg-rgb: 26, 26, 26;
+  --accent-color-rgb: 38, 233, 255;
+}
+
+.light-mode {
+  --bg-color: var(--light-bg);
+  --text-color: var(--light-text);
+  --secondary-text: var(--light-secondary-text);
+  --accent-color: var(--light-accent);
+  --card-bg: var(--light-card-bg);
+  --footer-bg: var(--light-footer-bg);
+  --nav-bg: var(--light-nav-bg);
+  --about-bg: var(--light-about-bg);
+  --feature-card-bg: var(--light-feature-card-bg);
+
+  /* RGB values for transparency */
+  --bg-rgb: var(--light-bg-rgb);
+  --text-rgb: var(--light-text-rgb);
+  --card-bg-rgb: var(--light-card-bg-rgb);
+  --accent-color-rgb: var(--light-accent-rgb);
+}
+
+/* Global styles */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+} 
