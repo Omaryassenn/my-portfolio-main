@@ -45,7 +45,7 @@ const experiences = [
     year: '2025',
     jobs: [
       {
-        date: 'Mar 2025 - May-2025',
+        date: 'Mar 2025 - May 2025',
         title: 'UI/UX Designer',
         company: 'Onerythme',
         description: 'Designing modern, sleek dashboards focused on intuitive UX and real-time analytics for the Saudi-based start-up.',
