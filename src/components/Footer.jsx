@@ -27,8 +27,8 @@ const Footer = () => {
           </div>
 
           <div className="footer-section">
-            <h3 className="footer-label">CONTACT INFO</h3>
-            <div className="footer-values">
+            <h3 className="footer-label" id="contact-info">CONTACT INFO</h3>
+            <div className="footer-values" role="list" aria-labelledby="contact-info">
             <p role="listitem">
                   <span className="visually-hidden">Location: </span>
                   CAIRO, EGYPT
