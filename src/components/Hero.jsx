@@ -5,6 +5,7 @@ import gradientSvg from '../assets/gradient.svg';
 import mobile from '../assets/mobilegradient.svg';
 import Button from './Button';
 import tablet from '../assets/Tabletgradient.svg';
+import ScrollAnimation from './ScrollAnimation';
 
 const Hero = () => {
   return (
@@ -15,19 +16,25 @@ const Hero = () => {
         <img src={tablet} alt="Gradient Mobile" className="gradient-tablet" />
       </div>
       <div className="hero-content">
-        <h1>Hi, I'm Omar — a UI/UX<br />Designer & Frontend<br />Developer.</h1>
-        <p>I craft seamless user experiences and build responsive, accessible, and performant web applications.</p>
-        <div className="hero-buttons">
-          <Button 
-            variant="primary" 
-            icon={FiArrowUpRight}
-          >
-            Let's Talk
-          </Button>
-          <Button variant="secondary" icon={FiArrowRight}>
-            View Projects
-          </Button>
-        </div>
+        <ScrollAnimation direction="up" delay={0.2}>
+          <h1>Hi, I'm Omar — a UI/UX<br />Designer & Frontend<br />Developer.</h1>
+        </ScrollAnimation>
+        <ScrollAnimation direction="up" delay={0.4}>
+          <p>I craft seamless user experiences and build responsive, accessible, and performant web applications.</p>
+        </ScrollAnimation>
+        <ScrollAnimation direction="up" delay={0.6}>
+          <div className="hero-buttons">
+            <Button 
+              variant="primary" 
+              icon={FiArrowUpRight}
+            >
+              Let's Talk
+            </Button>
+            <Button variant="secondary" icon={FiArrowRight}>
+              View Projects
+            </Button>
+          </div>
+        </ScrollAnimation>
       </div>
     </section>
   );

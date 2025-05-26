@@ -6,6 +6,8 @@ import sparkles from '../assets/sparkles.svg';
 import { FiDownload, FiTarget, FiUsers, FiCode } from 'react-icons/fi';
 import Button from './Button';
 import smavatar from '../assets/avatarmobile.svg';
+import ScrollAnimation from './ScrollAnimation';
+
 const About = () => {
   const [glowPosition, setGlowPosition] = useState({ x: 0, y: 0 });
 
@@ -36,74 +38,85 @@ const About = () => {
   return (
     <section id="about" className="about-section">
       <div className="about-content">
-        <div className="section-title">
-          <div className="section-title-scroll">
-            {repeatedText}
-            {repeatedText}
+        <ScrollAnimation direction="up">
+          <div className="section-title">
+            <div className="section-title-scroll">
+              {repeatedText}
+              {repeatedText}
+            </div>
           </div>
-        </div>
+        </ScrollAnimation>
         
         <div className="about-main">
-          <div className="about-image">
-            <img src={avatar} alt="Omar's profile" className='lgavatar' />
-            <img src={smavatar} alt="Omar's profile" className="smavatar" />
-          </div>
+          <ScrollAnimation direction="left" delay={0.2}>
+            <div className="about-image">
+              <img src={avatar} alt="Omar's profile" className='lgavatar' />
+              <img src={smavatar} alt="Omar's profile" className="smavatar" />
+            </div>
+          </ScrollAnimation>
           
-          <div className="about-text">
-            <p>
-              I'm a hybrid designer-developer who thrives at the intersection of design and code, With experience in both UI/UX and frontend development, I bring ideas to life with clean, scalable code and user-centered design.
-            </p>
-            <a href="/Omar-Yassen.pdf" download>
-              <Button variant="primary" icon={FiDownload} id="download-cv">
-                Download CV
-              </Button>
-            </a>
-
-          </div>
+          <ScrollAnimation direction="right" delay={0.3}>
+            <div className="about-text">
+              <p>
+                I'm a hybrid designer-developer who thrives at the intersection of design and code, With experience in both UI/UX and frontend development, I bring ideas to life with clean, scalable code and user-centered design.
+              </p>
+              <a href="/Omar-Yassen.pdf" download>
+                <Button variant="primary" icon={FiDownload} id="download-cv">
+                  Download CV
+                </Button>
+              </a>
+            </div>
+          </ScrollAnimation>
         </div>
 
         <div className="feature-cards">
-          <div 
-            className="feature-card"
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-          >
-            <div className="glow-effect"></div>
-            <img src={ellipse} alt="" className="blur-ellipse" />
-            <div className="feature-icon">
-              <FiTarget />
+          <ScrollAnimation direction="up" delay={0.2}>
+            <div 
+              className="feature-card"
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className="glow-effect"></div>
+              <img src={ellipse} alt="" className="blur-ellipse" />
+              <div className="feature-icon">
+                <FiTarget />
+              </div>
+              <h3>Dynamic Decision-Maker</h3>
+              <p>Continuously evolves from every user interaction to deliver smarter, faster outcomes.</p>
             </div>
-            <h3>Dynamic Decision-Maker</h3>
-            <p>Continuously evolves from every user interaction to deliver smarter, faster outcomes.</p>
-          </div>
+          </ScrollAnimation>
 
-          <div 
-            className="feature-card"
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-          >
-            <div className="glow-effect"></div>
-            <img src={ellipse} alt="" className="blur-ellipse" />
-            <div className="feature-icon">
-              <FiUsers />
+          <ScrollAnimation direction="up" delay={0.4}>
+            <div 
+              className="feature-card"
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className="glow-effect"></div>
+              <img src={ellipse} alt="" className="blur-ellipse" />
+              <div className="feature-icon">
+                <FiUsers />
+              </div>
+              <h3>Human-Centric Design</h3>
+              <p>Crafted with attention to every pixel for maximum clarity and user engagement.</p>
             </div>
-            <h3>Human-Centric Design</h3>
-            <p>Crafted with attention to every pixel for maximum clarity and user engagement.</p>
-          </div>
+          </ScrollAnimation>
 
-          <div 
-            className="feature-card"
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-          >
-            <div className="glow-effect"></div>
-            <img src={ellipse} alt="" className="blur-ellipse" />
-            <div className="feature-icon">
-              <FiCode />
+          <ScrollAnimation direction="up" delay={0.6}>
+            <div 
+              className="feature-card"
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className="glow-effect"></div>
+              <img src={ellipse} alt="" className="blur-ellipse" />
+              <div className="feature-icon">
+                <FiCode />
+              </div>
+              <h3>Developer-Friendly Handoff</h3>
+              <p>Interfaces and components optimized for painless dev transfer and scale.</p>
             </div>
-            <h3>Developer-Friendly Handoff</h3>
-            <p>Interfaces and components optimized for painless dev transfer and scale.</p>
-          </div>
+          </ScrollAnimation>
         </div>
       </div>
     </section>
