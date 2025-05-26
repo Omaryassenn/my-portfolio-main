@@ -306,6 +306,9 @@
 .smavatar{
   display: block;
 }
+.about-text p{
+  text-align: center;
+}
   .feature-cards {
     grid-template-columns: 1fr;
   }
@@ -353,8 +356,6 @@
     flex: 0 0 200px;
   }
   .about-image img {
-    width: 200px;
-    height: 200px;
     transform: translateZ(0);
   }
   .about-text p {
