@@ -123,9 +123,9 @@
   background: linear-gradient(
     180deg,
     transparent 0%,
-    rgba(0, 0, 0, 0.3) 20%,
-    rgba(0, 0, 0, 0.8) 50%,
-    rgba(0, 0, 0, 0.9) 100%
+    rgba(0, 0, 0, 0.178) 20%,
+    rgba(0, 0, 0, 0.349) 50%,
+    rgba(0, 0, 0, 0.411) 100%
   );
   display: flex;
   justify-content: space-between;
@@ -133,7 +133,7 @@
   transition: all 0.3s ease;
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(10px);
-  height: 30%;
+  height: 25%;
   z-index: 2;
 }
 
@@ -206,7 +206,7 @@
 }
 
 .work-card:hover .card-overlay {
-  height: 35%;
+  height: 30%;
   background: linear-gradient(
     180deg,
     transparent 0%,
