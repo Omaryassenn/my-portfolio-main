@@ -31,27 +31,38 @@ const About = () => {
   const repeatedText = Array(8).fill(
     <>
       <span className="text">About me</span>
-      <img src={sparkles} alt="" className="sparkle" />
+      <img src={sparkles} alt="" className="sparkle" aria-hidden="true" />
     </>
   );
 
   return (
-    <section id="about" className="about-section">
+    <section id="about" className="about-section" aria-labelledby="about-title">
       <div className="about-content">
         <ScrollAnimation direction="up">
-          <div className="section-title">
-            <div className="section-title-scroll">
+          <div className="section-title" role="heading" aria-level="2">
+            <div className="section-title-scroll" aria-hidden="true">
               {repeatedText}
               {repeatedText}
             </div>
+            <span id="about-title" className="visually-hidden">About me</span>
           </div>
         </ScrollAnimation>
         
         <div className="about-main">
           <ScrollAnimation direction="left" delay={0.3}>
             <div className="about-image">
-              <img src={avatar} alt="Omar's profile" className='lgavatar' />
-              <img src={smavatar} alt="Omar's profile" className="smavatar" />
+              <img 
+                src={avatar} 
+                alt="Omar's professional headshot" 
+                className='lgavatar'
+                loading="lazy" 
+              />
+              <img 
+                src={smavatar} 
+                alt="Omar's professional headshot" 
+                className="smavatar"
+                loading="lazy" 
+              />
             </div>
           </ScrollAnimation>
           
@@ -60,8 +71,17 @@ const About = () => {
               <p>
                 I'm a hybrid designer-developer who thrives at the intersection of design and code, With experience in both UI/UX and frontend development, I bring ideas to life with clean, scalable code and user-centered design.
               </p>
-              <a href="/Omar-Yassen.pdf" download>
-                <Button variant="primary" icon={FiDownload} id="download-cv">
+              <a 
+                href="/Omar-Yassen.pdf" 
+                download 
+                aria-label="Download my CV in PDF format"
+              >
+                <Button 
+                  variant="primary" 
+                  icon={FiDownload} 
+                  id="download-cv"
+                  aria-label="Download CV"
+                >
                   Download CV
                 </Button>
               </a>
@@ -69,16 +89,17 @@ const About = () => {
           </ScrollAnimation>
         </div>
 
-        <div className="feature-cards">
+        <div className="feature-cards" role="list">
           <ScrollAnimation direction="up" delay={0.1}>
             <div 
               className="feature-card"
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
+              role="listitem"
             >
-              <div className="glow-effect"></div>
-              <img src={ellipse} alt="" className="blur-ellipse" />
-              <div className="feature-icon">
+              <div className="glow-effect" aria-hidden="true"></div>
+              <img src={ellipse} alt="" className="blur-ellipse" aria-hidden="true" />
+              <div className="feature-icon" aria-hidden="true">
                 <FiTarget />
               </div>
               <h3>Dynamic Decision-Maker</h3>
@@ -91,10 +112,11 @@ const About = () => {
               className="feature-card"
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
+              role="listitem"
             >
-              <div className="glow-effect"></div>
-              <img src={ellipse} alt="" className="blur-ellipse" />
-              <div className="feature-icon">
+              <div className="glow-effect" aria-hidden="true"></div>
+              <img src={ellipse} alt="" className="blur-ellipse" aria-hidden="true" />
+              <div className="feature-icon" aria-hidden="true">
                 <FiUsers />
               </div>
               <h3>Human-Centric Design</h3>
@@ -107,10 +129,11 @@ const About = () => {
               className="feature-card"
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
+              role="listitem"
             >
-              <div className="glow-effect"></div>
-              <img src={ellipse} alt="" className="blur-ellipse" />
-              <div className="feature-icon">
+              <div className="glow-effect" aria-hidden="true"></div>
+              <img src={ellipse} alt="" className="blur-ellipse" aria-hidden="true" />
+              <div className="feature-icon" aria-hidden="true">
                 <FiCode />
               </div>
               <h3>Developer-Friendly Handoff</h3>

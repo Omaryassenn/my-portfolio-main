@@ -388,4 +388,65 @@
     height: 36px;
     font-size: 1.1rem;
   }
+}
+
+/* Accessibility Styles */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus styles */
+.feature-card:focus-within {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* High contrast mode support */
+@media (forced-colors: active) {
+  .feature-card {
+    border: 1px solid CanvasText;
+  }
+  
+  .feature-icon {
+    border: 1px solid CanvasText;
+  }
+  
+  button,
+  a[download] {
+    border: 1px solid CanvasText;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .section-title-scroll {
+    animation: none;
+  }
+  
+  .feature-card {
+    transition: none;
+  }
+  
+  .feature-card:hover {
+    transform: none;
+  }
+  
+  .sparkle:hover {
+    transform: none;
+  }
 } 
