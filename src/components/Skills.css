@@ -355,3 +355,56 @@
     transform: translateY(-3px);
   }
 } 
+/* Accessibility Enhancements */
+.skill-item:focus-within {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+.skill-name {
+  color: var(--text-color);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skills-track {
+    animation: none;
+    transform: none;
+  }
+
+  .skill-item:hover {
+    transform: none;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (forced-colors: active) {
+  .skill-icon-wrapper {
+    border: 1px solid CanvasText;
+  }
+
+  .skill-item {
+    border: 1px solid CanvasText;
+  }
+
+  .skills-title .gradient-text {
+    -webkit-text-fill-color: CanvasText;
+  }
+}
+
+/* Skip animation if user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .skills-track {
+    animation: none;
+  }
+}
+
+/* Ensure sufficient color contrast */
+.category-title {
+  color: var(--text-color);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.skill-name {
+  font-weight: 500;
+} 
