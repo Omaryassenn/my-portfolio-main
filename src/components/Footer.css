@@ -96,10 +96,10 @@ footer-brand {
   background: linear-gradient(to right, var(--text-color), var(--accent-color));
   -webkit-background-clip: text;
   background-clip: text;
-  font-size: 8.4vw;
+  font-size: 8.6vw;
   line-height: 1;
   min-width: 100%;
-  text-align: center;
+  text-align: left;
 }
 .footer-brand{
   width: 100vw;
