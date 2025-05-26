@@ -6,8 +6,17 @@ import mobile from '../assets/mobilegradient.svg';
 import Button from './Button';
 import tablet from '../assets/Tabletgradient.svg';
 import ScrollAnimation from './ScrollAnimation';
+import { scroller } from 'react-scroll';
 
 const Hero = () => {
+  const scrollToSection = (sectionId) => {
+    scroller.scrollTo(sectionId, {
+      duration: 800,
+      delay: 0,
+      smooth: 'easeInOutQuart'
+    });
+  };
+
   return (
     <section id="home" className="hero-section">
       <div className="hero-background-gradient">
@@ -27,10 +36,15 @@ const Hero = () => {
             <Button 
               variant="primary" 
               icon={FiArrowUpRight}
+              onClick={() => scrollToSection('contact')}
             >
               Let's Talk
             </Button>
-            <Button variant="secondary" icon={FiArrowRight}>
+            <Button 
+              variant="secondary" 
+              icon={FiArrowRight}
+              onClick={() => scrollToSection('work')}
+            >
               View Projects
             </Button>
           </div>
