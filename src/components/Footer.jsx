@@ -29,9 +29,26 @@ const Footer = () => {
           <div className="footer-section">
             <h3 className="footer-label">CONTACT INFO</h3>
             <div className="footer-values">
-              <p>CAIRO, EGYPT</p>
-              <p>OMARYASSEN99@OUTLOOK.COM</p>
-              <p>+201149240296</p>
+            <p role="listitem">
+                  <span className="visually-hidden">Location: </span>
+                  CAIRO, EGYPT
+                </p>
+                <p role="listitem">
+                  <a 
+                    href="mailto:omaryassen99@outlook.com"
+                    aria-label="Send email to Omar Yassen"
+                  >
+                    OMARYASSEN99@OUTLOOK.COM
+                  </a>
+                </p>
+                <p role="listitem">
+                  <a 
+                    href="tel:+201149240296"
+                    aria-label="Call Omar Yassen"
+                  >
+                    +201149240296
+                  </a>
+                </p>
             </div>
           </div>
         </div>

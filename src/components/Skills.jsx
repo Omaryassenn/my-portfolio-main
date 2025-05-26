@@ -10,6 +10,7 @@ import sitemapIcon from '../assets/sitemap.svg';
 import figmaIcon from '../assets/FIGMAICON.svg';
 import skillsGlow from '../assets/skillss.svg';
 import { useTheme } from '../context/ThemeContext';
+import ScrollAnimation from './ScrollAnimation';
 
 const Skills = () => {
   const { isDarkMode } = useTheme();
@@ -17,13 +18,15 @@ const Skills = () => {
   const skillCategories = [
     {
       title: 'UI/UX',
+      description: 'User Interface and User Experience Design skills',
       skills: [
         { 
           name: 'Information Architecture', 
           icon: () => (
             <img 
               src={sitemapIcon} 
-              alt="" 
+              alt=""
+              role="presentation"
               className="skill-icon"
               style={{ 
                 filter: isDarkMode ? 'brightness(0) invert(1)' : 'brightness(0)' 
@@ -41,7 +44,8 @@ const Skills = () => {
           icon: () => (
             <img 
               src={figmaIcon} 
-              alt="" 
+              alt=""
+              role="presentation"
               className="skill-icon"
               style={{ 
                 filter: isDarkMode ? 'none' : 'brightness(0)' 
@@ -59,6 +63,7 @@ const Skills = () => {
     },
     {
       title: 'Front-end',
+      description: 'Front-end Development Technologies and Tools',
       skills: [
         { name: 'Notion', icon: SiNotion, color: isDarkMode ? '#ffffff' : '#000000' },
         { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E' },
@@ -75,12 +80,20 @@ const Skills = () => {
   ];
 
   const renderSkillItems = (skills) => {
-    // Create three copies of the skills array for seamless scrolling
     const repeatedSkills = [...skills, ...skills, ...skills];
     
     return repeatedSkills.map((skill, skillIndex) => (
-      <div key={`${skill.name}-${skillIndex}`} className="skill-item">
-        <div className="skill-icon-wrapper" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}>
+      <div 
+        key={`${skill.name}-${skillIndex}`} 
+        className="skill-item"
+        role="listitem"
+        aria-label={`${skill.name} skill`}
+      >
+        <div 
+          className="skill-icon-wrapper" 
+          style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
+          aria-hidden="true"
+        >
           {skill.isImage ? (
             <skill.icon />
           ) : (
@@ -93,22 +106,29 @@ const Skills = () => {
   };
 
   return (
-    <section className="skills-section" id="skills">
-      <img src={skillsGlow} alt="" className="skills-glow" />
-      <h2 className="skills-title">
-        Skills <span>&</span> <span className="gradient-text">Tools</span>
-      </h2>
+    <section className="skills-section" id="skills" aria-labelledby="skills-title">
+      <img src={skillsGlow} alt="" className="skills-glow" aria-hidden="true" />
+      
+        <h2 className="skills-title" id="skills-title">
+          Skills <span className="visually-hidden">and</span> <span className="gradient-text">Tools</span>
+        </h2>
+      
 
       <div className="skills-container">
         {skillCategories.map((category, index) => (
-          <div key={index} className="skill-category">
-            <h3 className="category-title">{category.title}</h3>
-            <div className="skills-scroll-container">
-              <div className="skills-track">
-                {renderSkillItems(category.skills)}
+            <div className="skill-category" role="region" aria-label={category.description}>
+              <h3 className="category-title">{category.title}</h3>
+              <div 
+                className="skills-scroll-container"
+                role="list"
+                aria-label={`${category.title} skills`}
+              >
+                <div className="skills-track">
+                  {renderSkillItems(category.skills)}
+                </div>
               </div>
             </div>
-          </div>
+            
         ))}
       </div>
     </section>
