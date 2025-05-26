@@ -88,7 +88,7 @@ footer-brand {
   font-family: 'Monument Extended', sans-serif;
   font-style: italic;
   font-weight: 100;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.04em;
   margin: 0;
   padding: 0;
   white-space: nowrap;
@@ -96,8 +96,7 @@ footer-brand {
   background: linear-gradient(to right, var(--text-color), var(--accent-color));
   -webkit-background-clip: text;
   background-clip: text;
-
-  font-size: 8.5vw;
+  font-size: 8.4vw;
   line-height: 1;
   min-width: 100%;
   text-align: center;
