@@ -17,7 +17,7 @@ import order from '../assets/orders.svg';
 import job from '../assets/job.svg';
 import { FiArrowUpRight } from 'react-icons/fi';
 import Pagination from './Pagination';
-import ScrollAnimation from './ScrollAnimation';
+
 const Work = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loadedImages, setLoadedImages] = useState({});
@@ -150,13 +150,9 @@ const Work = () => {
       <h2 className="work-title">
         My <span>Work</span>
       </h2>
-      
       <div className="work-grid">
-     
         {currentProjects.map((project, index) => (
-          
           <div key={index} className={`work-card ${project.size}`}>
-           
             <div className="card-content">
               {!loadedImages[project.title] && <div className="skeleton-loader" />}
               {typeof project.image === 'object' ? (
@@ -198,15 +194,10 @@ const Work = () => {
                   <FiArrowUpRight />
                 </a>
               </div>
-              
             </div>
-            
           </div>
-          
         ))}
-     
       </div>
-      
       <Pagination 
         currentPage={currentPage}
         totalPages={totalPages}
