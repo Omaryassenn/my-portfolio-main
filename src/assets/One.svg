@@ -355,7 +355,6 @@
 </g>
 <g filter="url(#filter7_d_63_1574)">
 <circle cx="419.5" cy="85.5" r="25.5" fill="black"/>
-<circle cx="419.5" cy="85.5" r="25" stroke="url(#paint5_linear_63_1574)"/>
 </g>
 <g clip-path="url(#clip2_63_1574)">
 <path d="M410.076 76.6299H416.728V85.4994H410.076V76.6299Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -480,11 +479,6 @@
 <stop stop-opacity="0.1"/>
 <stop offset="1" stop-opacity="0"/>
 </radialGradient>
-<linearGradient id="paint5_linear_63_1574" x1="401" y1="66.5" x2="419.5" y2="111" gradientUnits="userSpaceOnUse">
-<stop stop-color="#FFF2F2"/>
-<stop offset="0.500211" stop-color="#9EEF4D"/>
-<stop offset="1" stop-color="#B49E3F"/>
-</linearGradient>
 <clipPath id="clip0_63_1574">
 <rect width="839" height="552" rx="10" fill="white"/>
 </clipPath>
