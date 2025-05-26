@@ -209,6 +209,7 @@
   .experience-year {
     font-size: 2.5rem;
     white-space: nowrap;
+    width: fit-content;
   }
 
   .experience-year.active::before {
