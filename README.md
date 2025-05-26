@@ -17,7 +17,6 @@ Built with the tools and technologies:
     * [Prerequisites](#prerequisites)
     * [Installation](#installation)
     * [Usage](#usage)
-    * [Testing](#testing)
 
 ## Overview
 
