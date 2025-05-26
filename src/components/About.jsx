@@ -48,7 +48,7 @@ const About = () => {
         </ScrollAnimation>
         
         <div className="about-main">
-          <ScrollAnimation direction="left" delay={0.2}>
+          <ScrollAnimation direction="left" delay={0.3}>
             <div className="about-image">
               <img src={avatar} alt="Omar's profile" className='lgavatar' />
               <img src={smavatar} alt="Omar's profile" className="smavatar" />
@@ -70,7 +70,7 @@ const About = () => {
         </div>
 
         <div className="feature-cards">
-          <ScrollAnimation direction="up" delay={0.2}>
+          <ScrollAnimation direction="up" delay={0.1}>
             <div 
               className="feature-card"
               onMouseMove={handleMouseMove}
@@ -86,7 +86,7 @@ const About = () => {
             </div>
           </ScrollAnimation>
 
-          <ScrollAnimation direction="up" delay={0.4}>
+          <ScrollAnimation direction="up" delay={0.2}>
             <div 
               className="feature-card"
               onMouseMove={handleMouseMove}
@@ -102,7 +102,7 @@ const About = () => {
             </div>
           </ScrollAnimation>
 
-          <ScrollAnimation direction="up" delay={0.6}>
+          <ScrollAnimation direction="up" delay={0.4}>
             <div 
               className="feature-card"
               onMouseMove={handleMouseMove}

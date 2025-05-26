@@ -22,6 +22,7 @@
   position: sticky;
   z-index: 100000;   
   font-family: 'Poppins', sans-serif;
+  overflow-y: hidden;
 }
 
 .about-content {

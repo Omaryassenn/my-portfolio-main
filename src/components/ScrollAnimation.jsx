@@ -4,7 +4,11 @@ import { useRef } from 'react';
 
 const ScrollAnimation = ({ children, direction = 'up', delay = 0, className = '' }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { 
+    once: true, 
+    margin: "-100px",
+    amount: 0.3
+  });
 
   const animations = {
     up: {
@@ -35,7 +39,14 @@ const ScrollAnimation = ({ children, direction = 'up', delay = 0, className = ''
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={animations[direction]}
-      transition={{ duration: 0.6, delay: delay, ease: "easeOut" }}
+      transition={{ 
+        duration: 0.6, 
+        delay: delay, 
+        ease: "easeOut",
+        type: "spring",
+        stiffness: 260,
+        damping: 20
+      }}
       className={className}
     >
       {children}
