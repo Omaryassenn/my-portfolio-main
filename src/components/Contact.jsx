@@ -120,7 +120,7 @@ const Contact = () => {
 
               <div className="form-group">
                 <label htmlFor="email">Your Email</label>
-                <input name="email" placeholder='Enter youe email' type="email" id="email" required />
+                <input name="email" placeholder='Enter your email' type="email" id="email" required />
               </div>
             </div>
 
