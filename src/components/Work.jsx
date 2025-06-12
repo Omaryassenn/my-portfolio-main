@@ -15,6 +15,7 @@ import stego from '../assets/stego.svg';
 import banking from '../assets/banking.svg';
 import order from '../assets/orders.svg';
 import job from '../assets/job.svg';
+import workhub from '../assets/workhub.svg';
 import { FiArrowUpRight } from 'react-icons/fi';
 import Pagination from './Pagination';
 
@@ -35,11 +36,11 @@ const Work = () => {
       link: 'https://dribbble.com/shots/25752521-HawkEye-Revolutionizing-RFP-Analysis-with-AI',
     },
     {
-      title: 'OneRythme Dashboards',
+      title: 'WorkHub Egypt',
       role: 'UI/UX Designer',
-      image: onerythme,
+      image: workhub,
       size: 'big',
-      link: 'https://dribbble.com/shots/26007618-Dashboard-Analysis',
+      link: 'https://www.behance.net/gallery/228002787/WorkHub-Egypt?tracking_source=search_projects|workhub+egypt&l=0',
     },
     {
       title: 'NeuroPulse Landing-Page',
@@ -63,11 +64,11 @@ const Work = () => {
       link: 'https://dribbble.com/shots/25885873-Chic-Interiors-Landing-Page',
     },
     {
-      title: 'SecOne4ALL',
-      role: 'UI/UX Designer & Developer',
-      image: sec,
+      title: 'OneRythme Dashboards',
+      role: 'UI/UX Designer',
+      image: onerythme,
       size: 'big',
-      link: 'https://dribbble.com/shots/24848550-SecOne4all-for-hacking-services',
+      link: 'https://dribbble.com/shots/26007618-Dashboard-Analysis',
     },
     {
       title: 'Stackaroo',
@@ -91,11 +92,11 @@ const Work = () => {
       link: 'https://dribbble.com/shots/22322962-Steganography-Landing-page',
     },
     {
-      title: 'Banking Company',
-      role: 'UI/UX Designer',
-      image: banking,
+      title: 'SecOne4ALL',
+      role: 'UI/UX Designer & Developer',
+      image: sec,
       size: 'big',
-      link: 'https://dribbble.com/shots/25840708-A-landing-page-for-a-banking-company',
+      link: 'https://dribbble.com/shots/24848550-SecOne4all-for-hacking-services',
     },
     {
       title: 'Broskies yearbook',
@@ -115,8 +116,15 @@ const Work = () => {
       title: 'Order-Tracking App',
       role: 'UI/UX Designer & Developer',
       image: order,
-      size: 'medium',
+      size: 'small',
       link: 'https://order-tracker-chi.vercel.app/',
+    },
+    {
+      title: 'Banking Company',
+      role: 'UI/UX Designer',
+      image: banking,
+      size: 'big',
+      link: 'https://dribbble.com/shots/25840708-A-landing-page-for-a-banking-company',
     },
     {
       title: 'Job-Search App',
