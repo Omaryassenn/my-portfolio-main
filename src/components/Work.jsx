@@ -135,7 +135,7 @@ const Work = () => {
       link: 'https://dribbble.com/shots/25827878-TalentCare-for-job-search',
     },
     {
-      title: 'Job-Search App',
+      title: 'ReadlyAI',
       role: 'UI/UX Designer',
       image: readlyai,
       size: 'medium',
