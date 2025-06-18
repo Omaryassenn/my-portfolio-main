@@ -16,6 +16,7 @@ import banking from '../assets/banking.svg';
 import order from '../assets/orders.svg';
 import job from '../assets/job.svg';
 import workhub from '../assets/workhub.svg';
+import readlyai from '../assets/ReadlyAI.svg';
 import { FiArrowUpRight } from 'react-icons/fi';
 import Pagination from './Pagination';
 
@@ -120,7 +121,7 @@ const Work = () => {
       link: 'https://order-tracker-chi.vercel.app/',
     },
     {
-      title: 'Banking Company',
+      title: 'ReadlyAI',
       role: 'UI/UX Designer',
       image: banking,
       size: 'big',
@@ -132,6 +133,13 @@ const Work = () => {
       image: job,
       size: 'medium',
       link: 'https://dribbble.com/shots/25827878-TalentCare-for-job-search',
+    },
+    {
+      title: 'Job-Search App',
+      role: 'UI/UX Designer',
+      image: readlyai,
+      size: 'medium',
+      link: 'https://dribbble.com/shots/26161257-AI-SaaS-Hero-Section',
     },
   ];
 
