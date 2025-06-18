@@ -121,7 +121,7 @@ const Work = () => {
       link: 'https://order-tracker-chi.vercel.app/',
     },
     {
-      title: 'ReadlyAI',
+      title: 'Banking Company',
       role: 'UI/UX Designer',
       image: banking,
       size: 'big',
