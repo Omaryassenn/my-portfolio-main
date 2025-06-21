@@ -62,7 +62,7 @@ const Work = () => {
       role: 'UI/UX Designer',
       image: inno,
       size: 'small',
-      link: 'https://dribbble.com/shots/25885873-Chic-Interiors-Landing-Page',
+      link: 'https://dribbble.com/shots/25868593-Landing-Page-for-an-agency-company',
     },
     {
       title: 'OneRythme Dashboards',
