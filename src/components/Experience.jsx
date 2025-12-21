@@ -50,6 +50,13 @@ const experiences = [
         company: 'Onerythme',
         description: 'Designing modern, sleek dashboards focused on intuitive UX and real-time analytics for the Saudi-based start-up.',
       },
+      {
+        date: 'Jul 2025 - Present',
+        title: 'UI/UX Designer',
+        company: 'YOUXEL Technology',
+        description: 'I work on an AI-powered product called TORUK, where I design the platform, dashboards, and workflow builder canvas, collaborate closely with the front-end team, and contribute to front-end code when needed.',
+      },
+      
     ],
   },
 ];
