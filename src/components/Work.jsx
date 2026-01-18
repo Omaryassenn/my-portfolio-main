@@ -28,7 +28,7 @@ const Work = () => {
   const allProjects = [
     {
       title: 'Hawk-Eye Website',
-      role: 'UI/UX Designer',
+     
       image: {
         desktop: hawkeye,
         mobile: hawkeyeMobile
@@ -38,108 +38,86 @@ const Work = () => {
     },
     {
       title: 'WorkHub Egypt',
-      role: 'UI/UX Designer',
+     
       image: workhub,
       size: 'big',
       link: 'https://www.behance.net/gallery/228002787/WorkHub-Egypt?tracking_source=search_projects|workhub+egypt&l=0',
     },
     {
       title: 'NeuroPulse Landing-Page',
-      role: 'UI/UX Designer',
+     
       image: neuropulse,
       size: 'medium',
       link: 'https://dribbble.com/shots/25991747-AI-Startup-Responsive-Landing-Page',
     },
     {
       title: 'FAB Market Mobile App',
-      role: 'UI/UX Designer',
+     
       image: fabmarket,
       size: 'medium',
       link: 'https://dribbble.com/shots/24840522-NatureNosh-Wholesale-supply-app',
     },
     {
       title: 'Inno-Creatives',
-      role: 'UI/UX Designer',
+     
       image: inno,
       size: 'small',
       link: 'https://dribbble.com/shots/25868593-Landing-Page-for-an-agency-company',
     },
     {
       title: 'OneRythme Dashboards',
-      role: 'UI/UX Designer',
+     
       image: onerythme,
       size: 'big',
       link: 'https://dribbble.com/shots/26007618-Dashboard-Analysis',
     },
     {
       title: 'Stackaroo',
-      role: 'UI/UX Designer',
+     
       image: stackaroo,
       size: 'medium',
       link: 'https://dribbble.com/shots/25895850-A-Cartoon-Themed-Landing-Page-for-Effortless-DevOps',
     },
     {
       title: 'Chic Interiors',
-      role: 'UI/UX Designer',
+     
       image: chic,
       size: 'medium',
       link: 'https://dribbble.com/shots/25885873-Chic-Interiors-Landing-Page',
     },
     {
       title: 'Stegnography',
-      role: 'UI/UX Designer',
+     
       image: stego,
       size: 'small',
       link: 'https://dribbble.com/shots/22322962-Steganography-Landing-page',
     },
     {
-      title: 'SecOne4ALL',
-      role: 'UI/UX Designer & Developer',
-      image: sec,
-      size: 'big',
-      link: 'https://dribbble.com/shots/24848550-SecOne4all-for-hacking-services',
-    },
-    {
-      title: 'Broskies yearbook',
-      role: 'UI/UX Designer & Developer',
-      image: broskies,
-      size: 'medium',
-      link: 'https://broskies-yearbook.vercel.app/',
-    },
-    {
-      title: 'Coffee Shop App',
-      role: 'UI/UX Designer',
-      image: coffe,
-      size: 'medium',
-      link: 'https://dribbble.com/shots/25860393-Coffee-Shop-app',
-    },
-    {
-      title: 'Order-Tracking App',
-      role: 'UI/UX Designer & Developer',
-      image: order,
-      size: 'small',
-      link: 'https://order-tracker-chi.vercel.app/',
-    },
-    {
       title: 'Banking Company',
-      role: 'UI/UX Designer',
+     
       image: banking,
       size: 'big',
       link: 'https://dribbble.com/shots/25840708-A-landing-page-for-a-banking-company',
     },
     {
-      title: 'Job-Search App',
-      role: 'UI/UX Designer',
-      image: job,
-      size: 'medium',
-      link: 'https://dribbble.com/shots/25827878-TalentCare-for-job-search',
-    },
-    {
       title: 'ReadlyAI',
-      role: 'UI/UX Designer',
+     
       image: readlyai,
       size: 'medium',
       link: 'https://dribbble.com/shots/26161257-AI-SaaS-Hero-Section',
+    }, 
+    {
+      title: 'Coffee Shop App',
+
+      image: coffe,
+      size: 'medium',
+      link: 'https://dribbble.com/shots/25860393-Coffee-Shop-app',
+    },
+    {
+      title: 'Broskies yearbook',
+      image: broskies,
+      size: 'medium',
+      link: 'https://broskies-yearbook.vercel.app/',
     },
   ];
 

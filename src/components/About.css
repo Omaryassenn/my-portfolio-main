@@ -61,7 +61,7 @@
 .section-title-scroll .text {
     margin: 0 1rem;
     color: var(--text-color);
-    font-size: 80px;
+    font-size: 60px;
     font-weight: 100;
     font-style: italic;
     background: linear-gradient(to right, var(--text-color), var(--accent-color));
