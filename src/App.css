@@ -14,6 +14,11 @@
   color: var(--text-color);
   transition: color 0.3s ease;
 }
+
+.app > section + section,
+.app > section + footer {
+  margin-top: var(--section-gap);
+}
 ::selection{
   background-color: #01E8FF;
   color: rgb(0, 0, 0);

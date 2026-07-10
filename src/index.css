@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Inter:wght@400;500;700&display=swap');
+@import './styles/typography.css';
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -11,18 +11,24 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: var(--bg-color);
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-x: hidden;
   transition: background-color 0.3s ease;
+  font-family: var(--font-family);
+  font-size: var(--text-base);
+  font-weight: var(--font-regular);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family);
+  font-weight: var(--font-medium);
   color: var(--text-color);
-  }
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
 
-
-
-
-
-
-
+p, a, button, input, textarea, label, li {
+  font-family: inherit;
+}

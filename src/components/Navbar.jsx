@@ -49,7 +49,7 @@ const Navbar = () => {
           <a href="#experience" onClick={() => setMenuOpen(false)}>Experience</a>
           <a href="#work" onClick={() => setMenuOpen(false)}>Work</a>
           <a href="#skills" onClick={() => setMenuOpen(false)}>Skills</a>
-          <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+          
           <Button 
             variant="primary" 
             icon={FiArrowUpRight}

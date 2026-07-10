@@ -15,13 +15,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4rem 2rem;
-  background-color: var(--about-bg);
-  margin-top: 96px;
+ 
+  /* background-color: var(--about-bg); */
   overflow-x: hidden;
   position: sticky;
   z-index: 100000;   
-  font-family: 'Poppins', sans-serif;
+
   overflow-y: hidden;
 }
 
@@ -30,7 +29,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 5rem;
+
 }
 
 .section-title {
@@ -41,7 +40,6 @@
   margin-left: -50vw;
   margin-right: -50vw;
   overflow: hidden;
-  padding: 2rem 0;
   background: transparent;
   height: 80px;
   display: flex;
@@ -52,17 +50,16 @@
   display: inline-block;
   white-space: nowrap;
   animation: scroll 40s linear infinite;
-  font-size: 3rem;
-  font-weight: 700;
-  font-family: 'Poppins', sans-serif;
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
   font-style: italic;
 }
 
 .section-title-scroll .text {
     margin: 0 1rem;
     color: var(--text-color);
-    font-size: 60px;
-    font-weight: 100;
+    font-size: var(--text-4xl);
+    font-weight: var(--font-light);
     font-style: italic;
     background: linear-gradient(to right, var(--text-color), var(--accent-color));
     -webkit-background-clip: text;
@@ -110,6 +107,7 @@
   display: flex;
   align-items: flex-start;
   gap: 4rem;
+  padding-top: 3rem;
 }
 
 .about-image {
@@ -138,12 +136,11 @@
 }
 
 .about-text p {
-  font-size: 1.8rem;
-  line-height: 1.8;
+  font-size: var(--text-xl);
+  line-height: 1.7;
   color: var(--text-color);
   margin: 0 0 2rem 0;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
+  font-weight: var(--font-regular);
 }
 
 .download-cv {
@@ -155,8 +152,8 @@
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 50px;
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
   cursor: pointer;
   width: fit-content;
   transition: all 0.3s ease;
@@ -261,10 +258,9 @@
 
 .feature-card h3 {
   color: var(--text-color);
-  font-size: 1.25rem;
+  font-size: var(--text-lg);
   margin: 0;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
+  font-weight: var(--font-medium);
   text-align: left;
   position: relative;
   z-index: 1;
@@ -272,7 +268,8 @@
 
 .feature-card p {
   color: var(--secondary-text);
-  font-size: 1rem;
+  font-size: var(--text-base);
+  font-weight: var(--font-regular);
   line-height: 1.6;
   margin: 0;
   text-align: left;
@@ -328,15 +325,14 @@
     width: 250px;
     height: 250px;
   }
-  .about-section{
-    margin-top: auto;
-    margin-bottom: 50px;
+  .about-section {
+    margin-bottom: 0;
   }
 }
 
 @media (max-width: 480px) {
   .about-section {
-    padding: 2rem .5rem;
+    padding: 0 0.5rem 2rem;
   }
   .about-content {
     gap: 2rem;

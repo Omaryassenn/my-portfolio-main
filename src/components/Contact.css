@@ -1,7 +1,7 @@
 .contact-section {
   min-height: 100vh;
   background-color: var(--bg-color);
-  padding: 6rem 2rem;
+  padding: 0 2rem 6rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,10 +34,9 @@
 }
 
 .contact-title {
-  font-size: 3.5rem;
+  font-size: var(--text-4xl);
   color: var(--text-color);
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
+  font-weight: 100;
   background: linear-gradient(to right, var(--text-color), var(--accent-color));
   -webkit-background-clip: text;
   background-clip: text;
@@ -48,10 +47,10 @@
 }
 
 .contact-subtitle {
-  font-size: 1.25rem;
-  color: var(--secondary-text);
-  margin-bottom: 4rem;
-  font-family: 'Poppins', sans-serif;
+  font-size: var(--text-lg);
+  color: #c5c5c5;
+  margin-bottom: 2rem;
+  
   position: relative;
   z-index: 2;
   text-align: left;
@@ -86,8 +85,8 @@
 
 .form-group label {
   color: var(--text-color);
-  font-size: 1rem;
-  font-family: 'Inter', sans-serif;
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
   text-align: start;
 }
 
@@ -99,8 +98,8 @@
   border-radius: 12px;
   padding: 1rem;
   color: var(--text-color);
-  font-size: 1rem;
-  font-family: 'Inter', sans-serif;
+  font-size: var(--text-base);
+  font-weight: var(--font-regular);
   transition: all 0.3s ease;
   text-align: start;
 }
@@ -124,9 +123,8 @@
   gap: 0.75rem;
   padding: 0.75rem 1.5rem;
   border-radius: 50px;
-  font-size: 1rem;
-  font-weight: 500;
-  font-family: 'Inter', sans-serif;
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
   cursor: pointer;
   transition: all 0.3s ease;
   border: none;
@@ -174,9 +172,8 @@
 
 .contact-info h3 {
   color: var(--text-color);
-  font-size: 1.5rem;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
+  font-size: var(--text-xl);
+  font-weight: var(--font-medium);
   text-align: left;
 }
 
@@ -216,7 +213,6 @@
 .info-content h4 {
   color: var(--text-color);
   font-size: 1rem;
-  font-family: 'Inter', sans-serif;
   margin: 0;
   text-align: left;
 }
@@ -224,7 +220,6 @@
 .info-content p {
   color: var(--secondary-text);
   font-size: 0.875rem;
-  font-family: 'Inter', sans-serif;
   margin: 0;
   text-align: left;
 }
@@ -255,7 +250,7 @@
 
 @media (max-width: 1024px) {
   .contact-section {
-    padding: 4rem 1rem;
+    padding: 0 1rem 4rem;
   }
 
   .contact-container {
@@ -274,7 +269,7 @@
 
   .contact-subtitle {
     font-size: 1.1rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 
   .contact-glow {
@@ -306,7 +301,7 @@
 
 @media (max-width: 768px) {
   .contact-section {
-    padding: 3rem 1rem;
+    padding: 0 1rem 3rem;
   }
   .contact-title{
     font-size: 2rem;
@@ -382,7 +377,7 @@
 
 @media (max-width: 480px) {
   .contact-section {
-    padding: 2rem 0.5rem;
+    padding: 0 0.5rem 2rem;
   }
 
   .contact-container {
@@ -488,8 +483,8 @@
 }
 
 .Toastify__toast-body {
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
+  font-size: var(--text-base);
+  font-weight: var(--font-regular);
   padding: 0.5rem;
 }
 

@@ -16,9 +16,8 @@
   background: none;
   border: none;
   color: rgba(255, 255, 255, 0.5);
-  font-family: 'Inter', sans-serif;
-  font-size: 1.25rem;
-  font-weight: 500;
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
   cursor: pointer;
   padding: 0.5rem;
   min-width: 40px;

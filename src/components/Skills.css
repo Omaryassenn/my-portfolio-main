@@ -1,6 +1,6 @@
 .skills-section {
 
-  padding: 6rem 2rem;
+  padding: 0 2rem 6rem;
   background-color: var(--bg-color);
   display: flex;
   flex-direction: column;
@@ -11,8 +11,8 @@
 }
 
 .skills-title {
-  font-size: 60px;
-  font-weight: 100;
+  font-size: var(--text-4xl);
+  font-weight: var(--font-light);
   color: var(--text-color);
   margin-bottom: 6rem;
   text-align: center;
@@ -63,11 +63,10 @@
 }
 
 .category-title {
-  font-size: 50px;
-  font-weight: 400;
+  font-size: var(--text-3xl);
+  font-weight: var(--font-regular);
   color: white;
   text-align: center;
-  font-family: 'Inter', sans-serif;
 }
 
 .skills-scroll-container {
@@ -150,10 +149,9 @@
 
 .skill-name {
   color: var(--text-color);
-  font-size: 1rem;
-  font-weight: 400;
+  font-size: var(--text-base);
+  font-weight: var(--font-regular);
   text-align: center;
-  font-family: 'Inter', sans-serif;
   width: 100px;
   transition: color 0.3s ease;
 }
@@ -185,11 +183,11 @@
 
 @media (max-width: 1024px) {
   .skills-section {
-    padding: 4rem 1.5rem;
+    padding: 0 1.5rem 4rem;
   }
 
   .skills-title {
-    font-size: 60px;
+    font-size: var(--text-4xl);
     margin-bottom: 4rem;
   }
 
@@ -223,8 +221,7 @@
 
 @media (max-width: 768px) {
   .skills-section {
-    padding: 3rem 1rem;
-    margin-bottom: 50px;
+    padding: 0 1rem 3rem;
   }
 
   .skills-title {
@@ -296,7 +293,7 @@
 
 @media (max-width: 480px) {
   .skills-section {
-    padding: 2rem 0.5rem;
+    padding: 0 0.5rem 2rem;
   }
 
   .skills-title {
@@ -406,5 +403,5 @@
 }
 
 .skill-name {
-  font-weight: 500;
+  font-weight: var(--font-medium);
 } 
