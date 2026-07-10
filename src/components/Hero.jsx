@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Hero.css';
 import { FiArrowRight, FiArrowUpRight } from 'react-icons/fi';
 import Button from './Button';
@@ -7,6 +7,17 @@ import GradientBlinds from './GradientBlinds/GradientBlinds';
 import { scroller } from 'react-scroll';
 
 const Hero = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    const updateViewport = () => setIsMobile(mediaQuery.matches);
+
+    updateViewport();
+    mediaQuery.addEventListener('change', updateViewport);
+    return () => mediaQuery.removeEventListener('change', updateViewport);
+  }, []);
+
   const scrollToSection = (sectionId) => {
     scroller.scrollTo(sectionId, {
       duration: 800,
@@ -21,15 +32,15 @@ const Hero = () => {
         <GradientBlinds
           gradientColors={['#5ac8fa', '#5856d6', '#34aadc']}
           angle={-30}
-          noise={0.7}
-          blindCount={21}
-          blindMinWidth={10}
+          noise={isMobile ? 0.45 : 0.7}
+          blindCount={isMobile ? 14 : 21}
+          blindMinWidth={isMobile ? 16 : 10}
           mouseDampening={0.5}
           mirrorGradient
-          spotlightRadius={0.5}
-          spotlightSoftness={2.1}
+          spotlightRadius={isMobile ? 0.65 : 0.5}
+          spotlightSoftness={isMobile ? 1.8 : 2.1}
           spotlightOpacity={1}
-          distortAmount={0.2}
+          distortAmount={isMobile ? 0.12 : 0.2}
           shineDirection="left"
           mixBlendMode="normal"
         />

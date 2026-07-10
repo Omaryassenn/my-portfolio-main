@@ -1,15 +1,17 @@
 .hero-section {
-  min-height: 100vh; /* Make hero section take full viewport height */
+  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 0 2rem; /* Add some padding */
-  text-align: center; /* Center align text for now */
+  padding: 5.5rem 2rem 2rem;
+  text-align: center;
   box-sizing: border-box;
   width: 100%;
   overflow: hidden;
 }
+
 .hero-background-gradient {
   position: absolute;
   top: 0;
@@ -24,18 +26,21 @@
 }
 
 .hero-content {
-  position: relative; /* Ensure content is above the gradient */
+  position: relative;
   z-index: 1;
   color: white;
+  width: 100%;
+  max-width: 900px;
 }
 
 .hero-content h1 {
-  font-size: 4.1rem;
+  font-size: clamp(2rem, 5vw, 4.1rem);
   font-weight: var(--font-light);
   margin-bottom: 1rem;
-  line-height: 1.15;
+  line-height: 1.12;
   letter-spacing: -0.03em;
 }
+
 .hero-content p {
   font-size: var(--text-md);
   font-weight: var(--font-regular);
@@ -44,6 +49,7 @@
   margin-left: auto;
   margin-right: auto;
   color: #c5c5c5;
+  line-height: 1.6;
 }
 
 .hero-buttons {
@@ -52,55 +58,89 @@
   gap: 1rem;
   flex-wrap: wrap;
 }
-@media (max-width: 600px) {
-  .hero-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-.btn {
-  padding: 0.75rem 1.5rem;
-  border-radius: 25px; /* Pill shape buttons */
-  text-decoration: none;
-  font-weight: var(--font-medium);
-  font-size: var(--text-base);
-  cursor: pointer;
 
-  transition: all 0.3s ease;
+.hero-buttons .button {
+  min-width: 10.5rem;
 }
 
-.btn-primary {
-  background-color: #00A9E2; /* Example blue color */
-  color: white;
-  border: 2px solid #00A9E2;
-}
-
-.btn-primary:hover {
-  background-color: #007bff;
-  border-color: #007bff;
-}
-
-.btn-secondary {
-  background-color: transparent;
-  color: white;
-  border: 2px solid white;
-}
-
-.btn-secondary:hover {
-  background-color: white;
-  color: black;
-} 
 @media (max-width: 768px) {
   .hero-section {
-    padding: 2rem 1rem;
+    padding: 5rem 1.25rem 2rem;
+    min-height: calc(100svh - 1rem);
+  }
+
+  .hero-background-gradient {
+    opacity: 0.22;
+    transform: translateX(-50%) scale(1.15);
+    transform-origin: center center;
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(1.875rem, 8vw, 2.5rem);
+    line-height: 1.18;
+    margin-bottom: 0.875rem;
+    letter-spacing: -0.025em;
   }
 
   .hero-content p {
-    font-size: var(--text-base);
+    font-size: var(--text-sm);
+    line-height: 1.55;
+    margin-bottom: 1.5rem;
+    max-width: 22rem;
+    color: #b0b0b0;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .hero-buttons .button {
+    width: 100%;
+    max-width: 16rem;
+    min-width: 0;
+    padding: 0.7rem 1.25rem;
+    font-size: var(--text-sm);
+    gap: 0.5rem;
+  }
+
+  .hero-buttons .button-icon {
+    width: 18px;
+    height: 18px;
   }
 }
+
 @media (max-width: 480px) {
   .hero-section {
-    padding: 2rem .5rem;
+    padding: 4.5rem 1rem 1.5rem;
+  }
+
+  .hero-background-gradient {
+    opacity: 0.18;
+    transform: translateX(-50%) scale(1.25);
+  }
+
+  .hero-content h1 {
+    font-size: clamp(1.625rem, 9vw, 2rem);
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-content p {
+    font-size: var(--text-xs);
+    max-width: 18rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-buttons .button {
+    max-width: 100%;
+    padding: 0.65rem 1rem;
+    font-size: var(--text-xs);
   }
 }
