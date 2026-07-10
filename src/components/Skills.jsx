@@ -94,7 +94,7 @@ const Skills = () => {
 
   return (
     <section className="skills-section" id="skills">
-      <img src={skillsGlow} alt="" className="skills-glow" />
+      
       <h2 className="skills-title">
         Skills <span>&</span> <span className="gradient-text">Tools</span>
       </h2>

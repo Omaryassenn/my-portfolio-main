@@ -18,7 +18,7 @@
 }
 
 .dark-mode {
-  --bg-color: #070707;
+  --bg-color: #000002;
   --text-color: #ffffff;
   --secondary-text: #747474;
   --accent-color: #26e9ff;
@@ -29,7 +29,7 @@
   --feature-card-bg: rgba(26, 26, 26, 0.95);
 
   /* RGB values for transparency */
-  --bg-rgb: 20, 20, 20;
+  --bg-rgb: 0, 0, 2;
   --text-rgb: 255, 255, 255;
   --card-bg-rgb: 26, 26, 26;
   --accent-color-rgb: 38, 233, 255;
