@@ -1,7 +1,7 @@
 .experience-section {
   width: 100vw;
   background: var(--bg-color);
-  padding: 0 0 6rem;
+
   overflow: hidden;
   position: relative;
 }

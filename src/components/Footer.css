@@ -7,7 +7,7 @@
 
 .footer {
   background-color: var(--footer-bg);
-  padding: 6rem 2rem;
+  padding: 5rem 2rem 1rem;
   color: var(--text-color);
   transition: background-color 0.3s ease;
 }
