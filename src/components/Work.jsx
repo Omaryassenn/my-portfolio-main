@@ -106,19 +106,8 @@ const Work = () => {
       size: 'medium',
       link: 'https://dribbble.com/shots/26161257-AI-SaaS-Hero-Section',
     }, 
-    {
-      title: 'Coffee Shop App',
-
-      image: coffe,
-      size: 'medium',
-      link: 'https://dribbble.com/shots/25860393-Coffee-Shop-app',
-    },
-    {
-      title: 'Broskies yearbook',
-      image: broskies,
-      size: 'medium',
-      link: 'https://broskies-yearbook.vercel.app/',
-    },
+    
+    
   ];
 
   const totalPages = Math.ceil(allProjects.length / projectsPerPage);
