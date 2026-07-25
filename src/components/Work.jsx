@@ -135,7 +135,14 @@ const Work = () => {
       </h2>
       <div className="work-grid">
         {currentProjects.map((project, index) => (
-          <div key={index} className={`work-card ${project.size}`}>
+          <a
+            key={index}
+            href={project.link}
+            className={`work-card ${project.size}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`View ${project.title} project`}
+          >
             <div className="card-content">
               {!loadedImages[project.title] && <div className="skeleton-loader" />}
               {typeof project.image === 'object' ? (
@@ -168,17 +175,12 @@ const Work = () => {
                   <p className="card-role">{project.role}</p>
                   <h3 className="card-title">{project.title}</h3>
                 </div>
-                <a 
-                  href={project.link} 
-                  className="card-arrow" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
+                <span className="card-arrow" aria-hidden="true">
                   <FiArrowUpRight />
-                </a>
+                </span>
               </div>
             </div>
-          </div>
+          </a>
         ))}
       </div>
       <Pagination 
