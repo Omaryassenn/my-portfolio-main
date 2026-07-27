@@ -67,7 +67,7 @@
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .form-row {
@@ -131,7 +131,7 @@
   background: var(--text-color);
   color: var(--bg-color);
   width: fit-content;
-  margin-top: 1rem;
+  
 }
 
 .dark-mode .submit-button {

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Contact.css';
 import { FiArrowUpRight, FiMapPin, FiMail, FiPhone } from 'react-icons/fi';
-import { FaDribbble, FaLinkedinIn, FaInstagram, FaGithub } from 'react-icons/fa';
+import { FaDribbble, FaLinkedinIn, FaInstagram, FaGithub, FaBehance } from 'react-icons/fa';
 import contactGlow from '../assets/contactglow.svg';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -188,6 +188,9 @@ const Contact = () => {
               </a>
               <a href="https://github.com/Omaryassenn" target="_blank" rel="noopener noreferrer">
                 <FaGithub />
+              </a>
+              <a href="https://www.behance.net/omaryassenn" target="_blank" rel="noopener noreferrer">
+                <FaBehance />
               </a>
             </div>
           </div>
