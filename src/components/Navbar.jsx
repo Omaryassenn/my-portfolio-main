@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Navbar.css';
 import navLogo from '../assets/nav-logo.svg';
 import { FiMenu, FiX, FiArrowUpRight } from 'react-icons/fi';
@@ -17,13 +17,25 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeId, setActiveId] = useState(NAV_LINKS[0].id);
+  /* Where a tap inside the open menu wants to go, held until the menu has
+     actually closed. See handleNavClick for why it cannot travel immediately. */
+  const pendingScroll = useRef(null);
 
   // Lenis reads the wheel rather than the scrollbar, so overflow: hidden alone
   // no longer freezes the page behind the open menu.
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : 'auto';
-    if (menuOpen) pauseScroll();
-    else resumeScroll();
+    if (menuOpen) {
+      pauseScroll();
+    } else {
+      resumeScroll();
+      // Only now is Lenis running again, so this is the first moment a queued
+      // destination can be honoured.
+      if (pendingScroll.current) {
+        pendingScroll.current();
+        pendingScroll.current = null;
+      }
+    }
     return () => {
       document.body.style.overflow = 'auto';
       resumeScroll();
@@ -81,10 +93,24 @@ const Navbar = () => {
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
+  /* Closing the menu unlocks the page, but only in the effect above — which
+     React does not flush until this handler has returned. Scrolling here would
+     therefore run against a still-stopped Lenis, and Lenis drops scrollTo while
+     it is stopped rather than queueing it, so the tap did nothing at all. Hand
+     the destination to the effect instead and let it travel once the unlock has
+     happened. With the menu closed there is nothing to wait for. */
+  const goTo = (run) => {
+    if (menuOpen) {
+      pendingScroll.current = run;
+      setMenuOpen(false);
+    } else {
+      run();
+    }
+  };
+
   const handleContactClick = (e) => {
     e.preventDefault();
-    setMenuOpen(false);
-    scrollToSection('contact');
+    goTo(() => scrollToSection('contact'));
   };
 
   /* Every link is driven from here rather than from its href, because Lenis's
@@ -93,9 +119,7 @@ const Navbar = () => {
      page while the pin is engaged. The href stays for keyboard and no-JS use. */
   const handleNavClick = (e, id) => {
     e.preventDefault();
-    setMenuOpen(false);
-    if (id === 'home') scrollToTop();
-    else scrollToSection(id);
+    goTo(() => (id === 'home' ? scrollToTop() : scrollToSection(id)));
   };
 
   return (
