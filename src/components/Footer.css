@@ -1,13 +1,21 @@
+/* The footer keeps its own faces — deliberately outside the site-wide switch to
+   a single typeface. */
 @font-face {
   font-family: 'Monument Extended';
-  src: url('/public/MonumentExtended-Regular.otf') format('opentype');
+  /* Root-relative, not /public/…: Vite copies public/ to the root of the build,
+     so the /public prefix only ever resolved in dev and the wordmark fell back
+     to a system font on the live site. */
+  src: url('/MonumentExtended-Regular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 .footer {
-  background-color: var(--footer-bg);
-  padding: 5rem 2rem 1rem;
+  background-color: #070707;
+  /* Shares the one section gutter, so the footer columns line up with every
+     section above it at every width. */
+  padding: 5rem var(--section-gutter) 1rem;
   color: var(--text-color);
   transition: background-color 0.3s ease;
 }
@@ -18,13 +26,15 @@
   align-items: center;
   justify-items: center;
   gap: 5rem;
+  width: 100%;
 }
 
 .footer-sections {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 3rem;
-  max-width: 1500px;
+  width: 100%;
+  max-width: var(--section-max-width);
 }
 
 .footer-section {
@@ -36,7 +46,7 @@
 
 .footer-label {
   font-family: 'Poppins', sans-serif;
-  font-size: 28px;
+  font-size: clamp(28px, 2vw, 44px);
   font-weight: 400;
   color: var(--secondary-text);
   margin: 0;
@@ -53,7 +63,7 @@
 
 .footer-values p {
   font-family: 'Poppins', sans-serif;
-  font-size: 28px;
+  font-size: clamp(28px, 2vw, 44px);
   font-weight: 400;
   color: var(--text-color);
   margin: 0;
@@ -63,7 +73,7 @@
 
 .footer-values a {
   font-family: 'Poppins', sans-serif;
-  font-size: 28px;
+  font-size: clamp(28px, 2vw, 44px);
   font-weight: 400;
   color: var(--text-color);
   margin: 0;
@@ -75,13 +85,17 @@
 .footer-values a:hover {
   color: var(--accent-color);
 }
-footer-brand {
-  width: 100vw;
+/* Full-bleed wordmark: it cancels the footer's own gutter with a negative
+   margin instead of claiming 100vw, which used to push it past the right edge
+   by the width of the gutter (and of the scrollbar) and was only ever hidden by
+   the overflow clip on body. */
+.footer-brand {
+  align-self: stretch;
+  margin-inline: calc(var(--section-gutter) * -1);
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
- 
 }
 
 .footer-brand h1 {
@@ -102,14 +116,10 @@ footer-brand {
   min-width: 100%;
   text-align: center;
 }
-.footer-brand{
-  width: 100vw;
-
-}
 
 @media (max-width: 1024px) {
   .footer {
-    padding: 4rem 1.5rem;
+    padding: 4rem var(--section-gutter);
   }
 
   .footer-content {
@@ -138,7 +148,7 @@ footer-brand {
 
 @media (max-width: 768px) {
   .footer {
-    padding: 3rem 1rem;
+    padding: 3rem var(--section-gutter);
   }
 
   .footer-content {
@@ -173,7 +183,7 @@ footer-brand {
 
 @media (max-width: 480px) {
   .footer {
-    padding: 2rem 0.5rem;
+    padding: 2rem var(--section-gutter);
   }
 
   .footer-content {

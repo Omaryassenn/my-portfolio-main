@@ -1,111 +1,200 @@
 .hero-section {
   min-height: 100vh;
   min-height: 100svh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: relative;
-  padding: 5.5rem 2rem 2rem;
-  text-align: center;
+  display: flex;
+  align-items: flex-end;
+  /* Bottom padding is deliberately minimal so the lockup sits on the floor of
+     the section. env() keeps it clear of the home indicator on phones without
+     opening a gap on everything else. */
+  padding: 5.5rem var(--section-gutter) max(1.25rem, env(safe-area-inset-bottom, 0px));
   box-sizing: border-box;
   width: 100%;
   overflow: hidden;
+  background-color: #000000;
+  color: #ffffff;
+  text-align: left;
 }
 
-.hero-background-gradient {
+.hero-portrait {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
+  top: 9%;
+  left: 0;
+  right: 0;
+  height: 95%;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  opacity: 0.3;
+}
+
+.hero-portrait img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+.hero-portrait-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, #000000 96%);
 }
 
 .hero-content {
   position: relative;
   z-index: 1;
-  color: white;
   width: 100%;
-  max-width: 900px;
+  max-width: var(--section-max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
 }
 
-.hero-content h1 {
-  font-size: clamp(2rem, 5vw, 4.1rem);
+.hero-heading {
+  color: #ffffff;
+  text-transform: uppercase;
+  font-family: var(--font-family);
   font-weight: var(--font-light);
-  margin-bottom: 1rem;
-  line-height: 1.12;
-  letter-spacing: -0.03em;
 }
 
-.hero-content p {
-  font-size: var(--text-md);
-  font-weight: var(--font-regular);
-  margin-bottom: 2rem;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  color: #c5c5c5;
-  line-height: 1.6;
+/* Satoshi carries ~0.09em of left side bearing, so the glyphs start slightly
+   right of their box. Because that offset scales with font-size, the huge name
+   drifted visibly right of the much smaller tagline even though both boxes
+   share the same x. Cancelling each element's own bearing lands both sets of
+   glyphs flush on the same optical edge. */
+.hero-tagline {
+  font-size: clamp(1.25rem, 2.6vw, 3.75rem);
+  line-height: 1.4;
+  margin: 0 0 0 -0.09em;
+}
+
+/* line-height: 0.9 makes the line box shorter than the glyphs, so the letters
+   hang below it. The two columns are bottom-aligned by their boxes, which left
+   the name sitting ~0.28em lower on screen than the buttons opposite it.
+   Padding the box out by that overflow puts both optical baselines on the same
+   line. In em so it tracks the clamped font-size rather than drifting at other
+   widths. */
+.hero-name {
+  font-size: clamp(3.5rem, 13.5vw, 11.5rem);
+  font-style: italic;
+  font-weight: var(--font-light);
+  line-height: 0.9;
+  margin: 0 0 0 -0.09em;
+  margin-bottom: -0.625rem ;
+}
+
+.hero-accent-text {
+  color: #FF4600;
+}
+
+.hero-tagline .hero-accent-text {
+  font-family: var(--font-family);
+  font-style: normal;
+}
+
+/* The right-hand column tracks the viewport instead of sitting at a fixed 29rem
+   next to a name that keeps growing — otherwise the two halves of the lockup
+   drift apart on wide screens. 31vw only overtakes the 29rem floor past
+   ~1500px, so the reference layout is untouched. */
+.hero-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.8125rem;
+  max-width: clamp(29rem, 31vw, 42rem);
+}
+
+.hero-description {
+  font-family: var(--font-family);
+  text-transform: uppercase;
+  font-size: clamp(0.9375rem, 1.4vw, 2.125rem);
+  line-height: 1.4;
+  color: #ffffff;
+  margin: 0;
 }
 
 .hero-buttons {
   display: flex;
-  justify-content: center;
-  gap: 1rem;
+  align-items: center;
+  gap: 1.375rem;
   flex-wrap: wrap;
 }
 
 .hero-buttons .button {
-  min-width: 10.5rem;
+  min-width: clamp(10.5rem, 12vw, 14rem);
+  font-size: clamp(1.25rem, 1.42vw, 1.75rem);
+  text-transform: uppercase;
+}
+
+/* The name stopped growing at 1363px, so on a wide screen it was the one part
+   of the lockup that stayed still while everything around it spread out. Past
+   1400px it resumes its own 13.5vw rate from the 11.5rem it had reached, up to
+   a 1.5x ceiling — continuous at the boundary, and nothing below it changes. */
+@media (min-width: 87.5rem) {
+  .hero-name {
+    font-size: min(calc(11.5rem + (100vw - 87.5rem) * 0.135), 17.25rem);
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-info {
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 768px) {
   .hero-section {
-    padding: 5rem 1.25rem 2rem;
+    padding: 5rem var(--section-gutter) max(1rem, env(safe-area-inset-bottom, 0px));
     min-height: calc(100svh - 1rem);
   }
 
-  .hero-background-gradient {
-    opacity: 0.22;
-    transform: translateX(-50%) scale(1.15);
-    transform-origin: center center;
+  /* The lockup takes proportionally far more of a phone screen than a desktop
+     one, so the portrait gives height back rather than sitting behind the text. */
+  .hero-portrait {
+    height: 65%;
   }
 
-  .hero-content {
-    max-width: 100%;
+  .hero-portrait-fade {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 35%, #000000 82%);
   }
 
-  .hero-content h1 {
-    font-size: clamp(1.875rem, 8vw, 2.5rem);
-    line-height: 1.18;
-    margin-bottom: 0.875rem;
-    letter-spacing: -0.025em;
+  .hero-tagline {
+    font-size: 1.125rem;
   }
 
-  .hero-content p {
+  .hero-name {
+    font-size: clamp(3rem, 20vw, 5rem);
+  }
+
+  .hero-info {
+    gap: 1rem;
+  }
+
+  .hero-description {
     font-size: var(--text-sm);
-    line-height: 1.55;
-    margin-bottom: 1.5rem;
-    max-width: 22rem;
-    color: #b0b0b0;
   }
 
   .hero-buttons {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     gap: 0.75rem;
     width: 100%;
   }
 
   .hero-buttons .button {
     width: 100%;
-    max-width: 16rem;
     min-width: 0;
-    padding: 0.7rem 1.25rem;
+    padding: 0 1.25rem;
     font-size: var(--text-sm);
     gap: 0.5rem;
   }
@@ -118,29 +207,18 @@
 
 @media (max-width: 480px) {
   .hero-section {
-    padding: 4.5rem 1rem 1.5rem;
+    padding: 4.5rem var(--section-gutter) max(0.875rem, env(safe-area-inset-bottom, 0px));
   }
 
-  .hero-background-gradient {
-    opacity: 0.18;
-    transform: translateX(-50%) scale(1.25);
+  .hero-portrait {
+    height: 60%;
   }
 
-  .hero-content h1 {
-    font-size: clamp(1.625rem, 9vw, 2rem);
-    line-height: 1.2;
-    margin-bottom: 0.75rem;
+  .hero-name {
+    font-size: clamp(2.5rem, 22vw, 3.5rem);
   }
 
-  .hero-content p {
-    font-size: var(--text-xs);
-    max-width: 18rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .hero-buttons .button {
-    max-width: 100%;
-    padding: 0.65rem 1rem;
+  .hero-description {
     font-size: var(--text-xs);
   }
 }

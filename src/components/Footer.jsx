@@ -30,7 +30,7 @@ const Footer = () => {
             <h3 className="footer-label" id="contact-info">CONTACT INFO</h3>
             <div className="footer-values" role="list" aria-labelledby="contact-info">
             <p role="listitem">
-                  <span className="visually-hidden">Location: </span>
+                  
                   CAIRO, EGYPT
                 </p>
                 <p role="listitem">

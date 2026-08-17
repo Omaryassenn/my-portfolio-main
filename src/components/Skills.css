@@ -1,407 +1,300 @@
-.skills-section {
+/* Skills as two running bands rather than a wall of tiles: the header keeps the
+   page's gutter, the marquees run to the edges of the screen, and every mark
+   sits monochrome until you point at it. */
 
-  padding: 0 2rem rem;
-  background-color: var(--bg-color);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.skills {
+  --accent: var(--accent-color, #FF4600);
+  --sk-line: rgba(var(--text-rgb), 0.12);
+  --sk-muted: rgba(var(--text-rgb), 0.5);
+  --sk-gap: clamp(1.5rem, 2.4vw, 2.5rem);
   position: relative;
+  background-color: var(--bg-color);
+  padding: clamp(3rem, 8vh, 6rem) var(--section-gutter);
   overflow: hidden;
   transition: background-color 0.3s ease;
 }
 
-.skills-title {
-  font-size: var(--text-4xl);
+.skills__inner {
+  width: 100%;
+  max-width: var(--section-max-width);
+  margin: 0 auto;
+  /* #root centres text globally. */
+  text-align: left;
+}
+
+/* --- Header ---------------------------------------------------------------- */
+
+.skills__head {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-family: var(--font-family);
+  font-size: clamp(0.8125rem, 1vw, 0.9375rem);
+  letter-spacing: 0.14em;
+  
+  color: var(--sk-muted);
+}
+
+.skills__label {
+  flex: 0 0 auto;
+  margin: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: var(--text-color);
+}
+
+.skills__rule {
+  flex: 1 1 auto;
+  height: 1px;
+  background: linear-gradient(90deg, #c4c4c4 0%, #000 100%);
+}
+
+.skills__count {
+  flex: 0 0 auto;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Rows ------------------------------------------------------------------ */
+
+.skills__rows {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 6vh, 4rem);
+  margin-top: clamp(2.5rem, 6vh, 4rem);
+}
+
+.skill-row__title {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin: 0 0 clamp(1rem, 2vh, 1.5rem);
+  font-family: var(--font-family);
   font-weight: var(--font-light);
+  font-size: clamp(1.25rem, 2vw, 2rem);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
   color: var(--text-color);
-  margin-bottom: 4.5rem;
-  text-align: center;
-  transition: color 0.3s ease;
 }
 
-.skills-title span {
-  color: var(--text-color);
-  transition: color 0.3s ease;
+.skill-row__index {
+  font-family: var(--font-family);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
 }
 
-.skills-title .gradient-text {
-  background: linear-gradient(to right, var(--text-color), var(--accent-color));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  transition: background 0.3s ease;
-}
-
-.skills-glow {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -38%);
-  width: 60%;
-  height: 85%;
-  max-width: 1400px;
-  opacity: 0.4;
-  pointer-events: none;
-  z-index: 1;
-  transition: opacity 0.3s ease;
-}
-
-.skills-container {
+/* Breaks out of the gutter to the full width of the viewport, so the band is a
+   rule across the whole page and the marquee has somewhere to come from. */
+.skill-row__band {
   position: relative;
-  max-width: 1400px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-  z-index: 2;
-}
-
-.skill-category {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-}
-
-.category-title {
-  font-size: var(--text-3xl);
-  font-weight: var(--font-regular);
-  color: white;
-  text-align: center;
-}
-
-.skills-scroll-container {
-  position: relative;
-  width: 100%;
+  margin-inline: calc(var(--section-gutter) * -1);
+  padding: clamp(1rem, 2.5vh, 1.5rem) 0;
+  border-top: 1px solid var(--sk-line);
+  border-bottom: 1px solid var(--sk-line);
   overflow: hidden;
-  padding: 2rem 0;
 }
 
-.skills-scroll-container::before,
-.skills-scroll-container::after {
+/* The marks dissolve into the page at both ends instead of being cut off. */
+.skill-row__band::before,
+.skill-row__band::after {
   content: '';
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 150px;
+  width: clamp(3rem, 10vw, 9rem);
   z-index: 2;
   pointer-events: none;
 }
 
-.skills-scroll-container::before {
+.skill-row__band::before {
   left: 0;
   background: linear-gradient(to right, var(--bg-color) 0%, rgba(var(--bg-rgb), 0) 100%);
-  transition: background 0.3s ease;
 }
 
-.skills-scroll-container::after {
+.skill-row__band::after {
   right: 0;
   background: linear-gradient(to left, var(--bg-color) 0%, rgba(var(--bg-rgb), 0) 100%);
-  transition: background 0.3s ease;
 }
 
-.skills-track {
+.skill-row__track {
   display: flex;
-  gap: 2rem;
-  animation: scroll 40s linear infinite;
+  align-items: center;
+  gap: var(--sk-gap);
   width: max-content;
-  padding-left: 2rem;
-  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  animation: skills-scroll 46s linear infinite;
 }
 
-.skill-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  transition: transform 0.3s ease;
-  flex-shrink: 0;
+.skill-row:nth-child(2) .skill-row__track {
+  animation-direction: reverse;
 }
 
-.skill-item:hover {
-  transform: translateY(-5px);
-}
-
-.skill-icon-wrapper {
-  width: 80px;
-  height: 80px;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(var(--text-rgb), 0.1);
-  backdrop-filter: blur(5px);
-  transition: all 0.3s ease;
-}
-
-.skill-icon {
-  width: 40px;
-  height: 40px;
-  transition: transform 0.3s ease;
-}
-
-.skill-item:hover .skill-icon-wrapper {
-  box-shadow: 0 0 20px rgba(var(--text-rgb), 0.1);
-}
-
-.skill-item:hover .skill-icon {
-  transform: scale(1.1);
-}
-
-.skill-name {
-  color: var(--text-color);
-  font-size: var(--text-base);
-  font-weight: var(--font-regular);
-  text-align: center;
-  width: 100px;
-  transition: color 0.3s ease;
-}
-
-/* Specific style for Information Architecture */
-.skill-name[data-skill="Information Architecture"] {
-  white-space: normal;
-  line-height: 1.2;
-}
-
-@keyframes scroll {
+/* One full pass of the list. The gap term is what keeps the seam invisible:
+   translating a flat -100%/3 would fall a third of one gap short and the row
+   would twitch on every loop. */
+@keyframes skills-scroll {
   from {
     transform: translateX(0);
   }
   to {
-    transform: translateX(calc(-50% - 1rem));
+    transform: translateX(calc(-100% / 3 - var(--sk-gap) / 3));
   }
 }
 
-/* Pause animation on hover */
-.skills-scroll-container:hover .skills-track {
+.skill-row__band:hover .skill-row__track,
+.skill-row__band:focus-within .skill-row__track {
   animation-play-state: paused;
 }
 
-/* Reverse direction for second category */
-.skill-category:nth-child(2) .skills-track {
-  animation-direction: reverse;
+/* --- Marks ----------------------------------------------------------------- */
+
+.skill {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  flex-shrink: 0;
 }
 
-@media (max-width: 1024px) {
-  .skills-section {
-    padding: 0 1.5rem 4rem;
-  }
-
-  .skills-title {
-    font-size: var(--text-4xl);
-    margin-bottom: 4rem;
-  }
-
-  .skills-container {
-    gap: 4rem;
-  }
-
-  .category-title {
-    font-size: 40px;
-  }
-
-  .skill-category {
-    gap: 2rem;
-  }
-
-  .skills-glow {
-    width: 80%;
-    height: 70%;
-  }
-
-  .skill-icon-wrapper {
-    width: 70px;
-    height: 70px;
-  }
-
-  .skill-icon {
-    width: 35px;
-    height: 35px;
-  }
+/* The separator has to sit the same distance from the name before it as from
+   the mark after it. The track's own gap covers the left side, so the right
+   side has to make up the difference against the item's inner gap. */
+.skill__dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(var(--text-rgb), 0.28);
+  margin-right: calc(var(--sk-gap) - 0.875rem);
 }
+
+.skill__mark {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* Monochrome at rest — the colour is the reward for stopping on one. */
+.skill__glyph {
+  width: 100%;
+  height: 100%;
+  color: rgba(var(--text-rgb), 0.65);
+  transition: color 0.35s ease, transform 0.35s ease;
+}
+
+.skill__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: filter 0.35s ease, transform 0.35s ease;
+}
+
+/* A single-colour glyph: only ever flipped to sit on the current theme. */
+.dark-mode .skill__img--flat {
+  filter: brightness(0) invert(1) opacity(0.65);
+}
+
+.light-mode .skill__img--flat {
+  filter: brightness(0) opacity(0.65);
+}
+
+/* A full-colour mark, desaturated to match the rest of the row. */
+.skill__img--color {
+  filter: grayscale(1) brightness(1.6) opacity(0.7);
+}
+
+.light-mode .skill__img--color {
+  filter: grayscale(1) brightness(0.6) opacity(0.7);
+}
+
+.skill__name {
+  font-family: var(--font-family);
+  font-size: clamp(0.8125rem, 1vw, 0.9375rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--sk-muted);
+  transition: color 0.35s ease;
+}
+
+.skill:hover .skill__name {
+  color: var(--text-color);
+}
+
+/* Falls back to the page's own foreground when a mark has no brand colour, so
+   an uncoloured icon still lights up rather than staying dim. */
+.skill:hover .skill__glyph {
+  color: var(--skill-color, var(--text-color));
+  transform: scale(1.08);
+}
+
+.skill:hover .skill__img--color {
+  filter: none;
+  transform: scale(1.08);
+}
+
+.dark-mode .skill:hover .skill__img--flat {
+  filter: brightness(0) invert(1);
+  transform: scale(1.08);
+}
+
+.light-mode .skill:hover .skill__img--flat {
+  filter: brightness(0);
+  transform: scale(1.08);
+}
+
+/* --- Responsive ------------------------------------------------------------ */
 
 @media (max-width: 768px) {
-  .skills-section {
-    padding: 0 1rem 3rem;
+  .skills {
+    padding: clamp(2.5rem, 6vh, 4rem) var(--section-gutter);
   }
 
-  .skills-title {
-    font-size: 48px;
-    margin-bottom: 3rem;
+  .skill-row__track {
+    animation-duration: 34s;
   }
 
-  .skills-container {
-    gap: 3rem;
-  }
-
-  .category-title {
-    font-size: 32px;
-  }
-
-  .skill-category {
-    gap: 1.5rem;
-  }
-
-  .skills-glow {
-    width: 100%;
-    height: 60%;
-    opacity: 0.3;
-  }
-
-  .skills-scroll-container {
-    padding: 1rem 0;
-  }
-
-  .skills-scroll-container::before,
-  .skills-scroll-container::after {
-    width: 100px;
-  }
-
-  .skills-track {
-    gap: 1.5rem;
-    animation-duration: 30s;
-  }
-
-  .skill-icon-wrapper {
-    width: 60px;
-    height: 60px;
-    border-radius: 15px;
-  }
-
-  .skill-icon {
-    width: 30px;
-    height: 30px;
-  }
-
-  .skill-name {
-    font-size: 0.9rem;
-    width: 90px;
-  }
-  .skills-glow {
-    position: absolute;
-    left: 50%;
-    top: 40%;
-    transform: translate(-50%, -38%);
-    width: 100%;
-    height: 100%;
-    max-width: 1400px;
-    opacity: 1;
-    pointer-events: none;
-    z-index: 1;
-    transition: opacity 0.3s ease;
+  .skill__mark {
+    width: 1.25rem;
+    height: 1.25rem;
   }
 }
 
 @media (max-width: 480px) {
-  .skills-section {
-    padding: 0 0.5rem 2rem;
+  .skills__head {
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
   }
 
-  .skills-title {
-    font-size: 36px;
-    margin-bottom: 2rem;
+  .skills__rule {
+    display: none;
   }
-
-  .skills-container {
-    gap: 2rem;
-  }
-
-  .category-title {
-    font-size: 24px;
-  }
-
-  .skill-category {
-    gap: 1rem;
-  }
-
-  .skills-glow {
-    opacity: 0.2;
-  }
-
-  .skills-scroll-container {
-    padding: 0.5rem 0;
-  }
-
-  .skills-scroll-container::before,
-  .skills-scroll-container::after {
-    width: 60px;
-  }
-
-  .skills-track {
-    gap: 1rem;
-    animation-duration: 25s;
-    padding-left: 1rem;
-  }
-
-  .skill-icon-wrapper {
-    width: 50px;
-    height: 50px;
-    border-radius: 12px;
-  }
-
-  .skill-icon {
-    width: 25px;
-    height: 25px;
-  }
-
-  .skill-name {
-    font-size: 0.8rem;
-    width: 80px;
-  }
-
-  .skill-item:hover {
-    transform: translateY(-3px);
-  }
-} 
-/* Accessibility Enhancements */
-.skill-item:focus-within {
-  outline: 2px solid var(--accent-color);
-  outline-offset: 2px;
-  border-radius: 8px;
 }
 
-.skill-name {
-  color: var(--text-color);
-}
+/* --- Accessibility ---------------------------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
-  .skills-track {
+  .skill-row__track {
     animation: none;
-    transform: none;
+    /* No loop left to hide the overflow, so the row wraps into a plain list
+       instead of silently clipping two thirds of itself. */
+    width: auto;
+    flex-wrap: wrap;
+    gap: 1rem var(--sk-gap);
   }
 
-  .skill-item:hover {
-    transform: none;
+  .skill__glyph,
+  .skill__img,
+  .skill__name {
+    transition: none;
   }
 }
 
-/* High Contrast Mode Support */
 @media (forced-colors: active) {
-  .skill-icon-wrapper {
-    border: 1px solid CanvasText;
-  }
-
-  .skill-item {
-    border: 1px solid CanvasText;
-  }
-
-  .skills-title .gradient-text {
-    -webkit-text-fill-color: CanvasText;
+  .skill__glyph {
+    color: CanvasText;
   }
 }
-
-/* Skip animation if user prefers reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .skills-track {
-    animation: none;
-  }
-}
-
-/* Ensure sufficient color contrast */
-.category-title {
-  color: var(--text-color);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-.skill-name {
-  font-weight: var(--font-medium);
-} 

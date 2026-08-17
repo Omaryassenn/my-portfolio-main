@@ -1,0 +1,148 @@
+/* The panel that rides up over the pinned hero. It must be opaque and sit above
+   the hero in the local stacking context, since the hero is still painted
+   (fixed) underneath for the whole slide. */
+.hero-reveal {
+  position: relative;
+  z-index: 2;
+  height: 100vh;
+  height: 100svh;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #000002;
+  /* Clips the cards while they are still below the fold and again once they
+     pass the top, so they enter and leave without needing an opacity fade. */
+  overflow: hidden;
+  text-align: center;
+}
+
+.hero-reveal-stage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 0 var(--section-gutter);
+  box-sizing: border-box;
+}
+
+.hero-reveal-heading {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
+  margin: 0;
+  max-width: var(--section-max-width);
+  font-family: var(--font-family);
+  font-weight: var(--font-light);
+  font-size: clamp(1.6rem, 5.2vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+/* Starting colour lives here as well as in the timeline so the first paint is
+   already dark - otherwise the text flashes white before gsap initialises. The
+   words inherit it until the scrub takes each one over individually. */
+.hero-reveal-line {
+  color: #1f1f1f;
+}
+
+/* inline-block keeps a word from breaking across lines mid-sweep; will-change
+   sits here rather than on the line because colour is now animated per word. */
+.hero-reveal-word {
+  display: inline-block;
+  will-change: color;
+}
+
+.hero-reveal-accent {
+  color: var(--accent-color);
+}
+
+/* Cards sit above the heading, matching the design where they pass in front of
+   the text as they travel. */
+.hero-reveal-cards {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* The mockups carry their own frame and drop shadow inside the artwork, so no
+   border or radius is added here - it would outline the transparent margin
+   around the art rather than the card itself. */
+.hero-reveal-card {
+  position: absolute;
+  top: 0;
+  margin: 0;
+  /* Only transform is animated, so the cards stay on the compositor. */
+  will-change: transform;
+}
+
+.hero-reveal-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Alternating left/right slots, so the eye is pulled across the frame as the
+   cards climb rather than up a single column. */
+.slot-one {
+  left: 4%;
+  width: 27%;
+}
+.slot-two {
+  right: 5%;
+  width: 31%;
+}
+.slot-three {
+  left: 8%;
+  width: 25%;
+}
+
+/* The headline is the whole panel, so it has to keep filling the frame as the
+   frame grows. Resumes its 5.2vw rate from the 4rem it reached at 1400px, up to
+   a 1.5x ceiling. */
+@media (min-width: 87.5rem) {
+  .hero-reveal-heading {
+    font-size: min(calc(4rem + (100vw - 87.5rem) * 0.052), 6rem);
+  }
+}
+
+@media (max-width: 1024px) {
+  .slot-one {
+    width: 35%;
+  }
+  .slot-two {
+    width: 39%;
+  }
+  .slot-three {
+    width: 33%;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-reveal-heading {
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+  }
+
+  /* Wider cards hugging the edges keep the centre clear for the headline, which
+     is the whole point of the section on a narrow screen. */
+  .slot-one {
+    left: -4%;
+    width: 54%;
+  }
+  .slot-two {
+    right: -6%;
+    width: 58%;
+  }
+  .slot-three {
+    left: -2%;
+    width: 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-reveal-line {
+    color: #ffffff;
+  }
+}

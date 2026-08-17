@@ -1,357 +1,409 @@
-.work-section {
- 
-  padding: 0 2rem 0rem;
+/* Projects as a rail that runs off both edges of the screen, each piece a large
+   image with a solid caption bar floating inside its lower edge. */
+
+.work {
+  --accent: var(--accent-color, #FF4600);
+  --wk-line: rgba(var(--text-rgb), 0.12);
+  --wk-muted: rgba(var(--text-rgb), 0.5);
+  --wk-gap: clamp(1rem, 1.6vw, 1.75rem);
+  --wk-radius: 0;
+  position: relative;
   background-color: var(--bg-color);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.work-title {
-  font-size: var(--text-4xl);
-  font-weight: var(--font-light);
-  color: var(--text-color);
-  margin-bottom: 4rem;
-  text-align: left;
-}
-
-.work-title span {
-  background: linear-gradient(to right, var(--text-color), var(--accent-color));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.work-grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 2rem;
-  max-width: 1400px;
-  width: 100%;
-}
-
-.work-card {
-  position: relative;
-  border-radius: 20px;
+  padding: clamp(3rem, 8vh, 6rem) 0;
   overflow: hidden;
-  border: 1px solid #3a3a3a;
-  background: var(--card-bg);
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
 }
 
-/* Card sizes */
-.work-card.small {
-  grid-column: span 4;
-  height: 552px;
-}
-
-.work-card.medium {
-  grid-column: span 6;
-  height: 565px;
-}
-
-.work-card.big {
-  grid-column: span 8;
-  height: 555px;
-}
-
-.card-content {
-  position: relative;
+.work__inner {
   width: 100%;
-  height: 100%;
-  background: var(--card-bg);
-}
-
-.card-content img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: all 0.3s ease;
-  opacity: 0;
-  position: relative;
-  z-index: 1;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-font-smoothing: subpixel-antialiased;
-  will-change: transform;
-}
-
-/* Responsive image handling */
-.desktop-image {
-  display: block;
-}
-
-.mobile-image {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  .desktop-image {
-    display: none;
-  }
-
-  .mobile-image {
-    display: block;
-  }
-}
-
-.skeleton-loader {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    var(--card-bg) 0%,
-    rgba(var(--accent-color-rgb), 0.1) 50%,
-    var(--card-bg) 100%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-  border-radius: 20px;
-  z-index: 0;
-}
-
-.card-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 2.5rem;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    rgba(0, 0, 0, 0.178) 20%,
-    rgba(0, 0, 0, 0.349) 50%,
-    rgba(0, 0, 0, 0.411) 100%
-  );
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(10px);
-  height: 25%;
-  z-index: 2;
-}
-
-.card-overlay::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    rgba(0, 0, 0, 0.4) 30%,
-    rgba(0, 0, 0, 0.8) 100%
-  );
-  z-index: 1;
-  pointer-events: none;
-}
-
-.card-info {
-  position: relative;
-  z-index: 3;
-  color: var(--text-color);
-}
-
-.card-role {
-  font-size: var(--text-lg);
-  color: var(--primary-text);
-  margin-bottom: 0.75rem;
-  text-align: left;
-  font-weight: var(--font-regular);
-}
-
-.card-title {
-  font-size: var(--text-2xl);
-  font-weight: var(--font-medium);
-  margin: 0;
-  color: var(--text-color);
+  max-width: var(--section-max-width);
+  margin: 0 auto;
+  padding: 0 var(--section-gutter);
+  box-sizing: border-box;
+  /* #root centres text globally. */
   text-align: left;
 }
 
-.card-arrow {
-  position: relative;
-  z-index: 3;
-  background: var(--text-color);
-  border: none;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
+/* --- Header ---------------------------------------------------------------- */
+
+.work__head {
   display: flex;
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  gap: 1.5rem;
+  font-family: var(--font-family);
+  font-size: clamp(0.8125rem, 1vw, 0.9375rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--wk-muted);
 }
 
-.card-arrow svg {
-  width: 24px;
-  height: 24px;
-  color: var(--bg-color);
+.work__eyebrow {
+  flex: 0 0 auto;
+  color: var(--text-color);
+}
+
+.work__rule {
+  flex: 1 1 auto;
+  height: 1px;
+  background: linear-gradient(90deg, #c4c4c4 0%, #000 100%);
+}
+
+.work__count {
+  flex: 0 0 auto;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Statement left, the way out right — the caption bar's own arrangement, one
+   level up. */
+.work__lede {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: clamp(1.5rem, 3.5vh, 2.5rem);
+}
+
+.work__title {
+  margin: 0;
+  max-width: 30ch;
+  font-family: var(--font-family);
+  font-weight: var(--font-light);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1.14;
+  font-size: clamp(1.75rem, 3.2vw, 3.25rem);
+  color: var(--text-color);
+}
+
+.work__accent {
+  color: var(--accent);
+}
+
+.work__all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  flex: 0 0 auto;
+  padding: 0 1.375rem;
+  min-height: var(--button-height);
+  font-family: var(--font-family);
+  font-size: 0.8125rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.work__all svg {
+  width: 1rem;
+  height: 1rem;
   transition: transform 0.3s ease;
 }
 
-/* Enhanced hover effects */
-.work-card:hover .card-content img {
-  transform: scale(1.05);
+.work__all:hover {
+  cursor: pointer;
+  color: var(--accent);
 }
 
-.work-card:hover .card-overlay {
-  height: 30%;
+.work__all:hover svg {
+  transform: translate(2px, -2px);
+}
+
+/* --- Rail ------------------------------------------------------------------ */
+
+/* Padded by the gutter rather than margin-negative, so the first card starts on
+   the page's own margin and the last one can still scroll clear of the edge. */
+.work__rail {
+  display: flex;
+  gap: var(--wk-gap);
+  margin-top: clamp(2rem, 5vh, 3.5rem);
+  padding: 0 var(--section-gutter);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: var(--section-gutter);
+  /* The rail has its own controls and a progress bar; a native bar underneath
+     them would be a third scroll affordance saying the same thing. */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.work__rail::-webkit-scrollbar {
+  display: none;
+}
+
+/* --- Project --------------------------------------------------------------- */
+
+.project {
+  position: relative;
+  flex: 0 0 auto;
+  width: clamp(16rem, 40vw, 38rem);
+  scroll-snap-align: start;
+  border-radius: var(--wk-radius);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  background: var(--card-bg);
+  isolation: isolate;
+}
+
+.project__media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--card-bg);
+}
+
+.project__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  /* Kept on its own layer so the zoom stays on the compositor while the rail is
+     being scrolled. */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.project:hover .project__img {
+  transform: scale(1.04);
+}
+
+.project__img--mobile {
+  display: none;
+}
+
+.project__skeleton {
+  position: absolute;
+  inset: 0;
   background: linear-gradient(
-    180deg,
-    transparent 0%,
-    rgba(0, 0, 0, 0.3) 20%,
-    rgba(0, 0, 0, 0.8) 50%,
-    rgba(0, 0, 0, 0.9) 100%
+    90deg,
+    var(--card-bg) 0%,
+    rgba(var(--text-rgb), 0.06) 50%,
+    var(--card-bg) 100%
   );
+  background-size: 200% 100%;
+  animation: work-shimmer 1.5s infinite;
 }
 
-.work-card:hover .card-arrow {
-  transform: translate(5px, -5px);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-}
-
-.work-card:hover .card-arrow svg {
-  transform: rotate(45deg);
-}
-
-/* Responsive adjustments */
-@media (max-width: 1200px) {
-  .work-section {
-    padding: 0 1.5rem 4rem;
+@keyframes work-shimmer {
+  from {
+    background-position: 200% 0;
   }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* A bar inset inside the image rather than a gradient laid over it: the caption
+   keeps its own contrast whatever the artwork behind it is doing. Near-black
+   with a blur rather than a white slab, so it belongs to the page instead of
+   punching a hole in it — the hairline is what separates it from dark artwork. */
+.project__bar {
+  position: absolute;
+  left: clamp(0.625rem, 1.2vw, 1rem);
+  right: clamp(0.625rem, 1.2vw, 1rem);
+  bottom: clamp(0.625rem, 1.2vw, 1rem);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 0.75rem 0.75rem 1.125rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--wk-radius);
   
-  .work-card.small,
-  .work-card.medium,
-  .work-card.big {
-    grid-column: span 6;
-    height: 450px;
-  }
-
-  .work-grid {
-    gap: 1.5rem;
-  }
-
-  .card-overlay {
-    padding: 2rem;
-  }
-
-  .card-role {
-    font-size: 1.1rem;
-  }
-
-  .card-title {
-    font-size: 1.5rem;
-  }
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  color: #ffffff;
 }
+
+.project__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.project__meta {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-family: var(--font-family);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.project__index {
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.project__name {
+  font-family: var(--font-family);
+  font-weight: var(--font-medium);
+  font-size: clamp(0.9375rem, 1.2vw, 1.25rem);
+  line-height: 1.25;
+  color: #ffffff;
+  /* One line: the bar is a caption, not a paragraph, and a wrap would push it
+     up over the artwork. */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.project__go {
+  flex: 0 0 auto;
+  margin-left: auto;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--wk-radius);
+  background: transparent;
+  color: #ffffff;
+  transition: background-color 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
+}
+
+.project__go svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.35s ease;
+}
+
+.project:hover .project__go {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.project:hover .project__go svg {
+  transform: translate(2px, -2px);
+}
+
+/* --- Controls -------------------------------------------------------------- */
+
+.work__controls {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-top: clamp(1.5rem, 3.5vh, 2.5rem);
+}
+
+.work__progress {
+  position: relative;
+  flex: 1 1 auto;
+  height: 1px;
+  background: var(--wk-line);
+  overflow: hidden;
+}
+
+/* Width is the share of the rail on screen, the offset is where in it you are —
+   so the bar reads as a viewport over the whole set, not a percentage. */
+.work__progress-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: var(--accent);
+  transition: transform 0.25s ease-out;
+}
+
+.work__nav {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 0.625rem;
+}
+
+.work__arrow {
+  display: grid;
+  place-items: center;
+  width: 2.875rem;
+  height: 2.875rem;
+  border: 1px solid var(--wk-line);
+  border-radius: var(--wk-radius);
+  background: transparent;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.work__arrow svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.work__arrow:hover:not(:disabled) {
+  background: var(--text-color);
+  border-color: var(--text-color);
+  color: var(--bg-color);
+}
+
+.work__arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* --- Responsive ------------------------------------------------------------ */
 
 @media (max-width: 768px) {
-  .work-section {
-    padding: 0 1rem 3rem;
+  .project {
+    width: clamp(15rem, 82vw, 26rem);
   }
 
-  .work-title {
-    font-size: 3rem;
-    margin-bottom: 2rem;
+  .project__media {
+    aspect-ratio: 3 / 4;
   }
 
-  .work-card.small,
-  .work-card.medium,
-  .work-card.big {
-    grid-column: span 12;
-    height: 400px;
+  .project__img--desktop {
+    display: none;
   }
 
-  .work-grid {
-    gap: 1rem;
+  .project__img--mobile {
+    display: block;
   }
 
-  .card-overlay {
-    padding: 1.5rem;
-    height: 26%;
+  .project__go {
+    width: 2.5rem;
+    height: 2.5rem;
   }
 
-  .card-role {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .card-title {
-    font-size: 1.25rem;
-  }
-
-  .card-arrow {
-    width: 40px;
-    height: 40px;
-  }
-
-  .card-arrow svg {
-    width: 20px;
-    height: 20px;
+  .work__lede {
+    align-items: flex-start;
+    gap: 1.5rem;
   }
 }
 
 @media (max-width: 480px) {
-  .work-section {
-    padding: 0 0.5rem 2rem;
+  .work__rule {
+    display: none;
   }
 
-  .work-title {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
+  .work__head {
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
   }
 
-  .work-card.small,
-  .work-card.medium,
-  .work-card.big {
-    height: 300px;
-  }
-
-  .card-content img {
-    transform: translateZ(0);
-    will-change: transform;
-  }
-
-  .card-overlay {
-    padding: 1rem;
-  }
-
-  .card-role {
-    font-size: 0.9rem;
-  }
-
-  .card-title {
-    font-size: 1.1rem;
-  }
-
-  .card-arrow {
-    width: 36px;
-    height: 36px;
-  }
-
-  .card-arrow svg {
-    width: 18px;
-    height: 18px;
+  .project__bar {
+    padding: 0.625rem 0.625rem 0.625rem 0.875rem;
   }
 }
 
-@keyframes shimmer {
-  0% {
-    background-position: 200% 0;
+@media (prefers-reduced-motion: reduce) {
+  .project__img,
+  .project__go,
+  .project__go svg,
+  .work__progress-bar {
+    transition: none;
   }
-  100% {
-    background-position: -200% 0;
+
+  .project:hover .project__img {
+    transform: none;
+  }
+
+  .project__skeleton {
+    animation: none;
   }
 }

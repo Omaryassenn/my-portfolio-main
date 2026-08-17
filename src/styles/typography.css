@@ -1,6 +1,12 @@
+/* One typeface for the whole site. Instrument Serif, Akatab and Michroma were
+   all dropped with it — three render-blocking stylesheets fewer, and no
+   second-guessing which face a given label belongs to. */
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap');
 
 :root {
+  /* The single source of truth. Nothing in the codebase names a family
+     directly — every rule reaches for this, so the site changes face in one
+     edit rather than forty. */
   --font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
   --text-xs: 0.8125rem;
@@ -21,4 +27,60 @@
   --font-black: 900;
 
   --section-gap: 5.625rem; /* 90px */
+
+  /* Deliberately uncapped: every section is fluid and fills the viewport at any
+     width, so a 2560px screen is composed for 2560px rather than showing a
+     1400px page floating in empty margins. The token is kept because every
+     inner wrapper references it — the gutter below, not a fixed ceiling, is
+     what gives all sections their shared left/right edge. */
+  --section-max-width: none;
+
+  /* Single source of truth for the horizontal gutter of every section. Fixed at
+     2rem up to the 1400px reference width — so nothing at or below that width
+     moves — then it opens up linearly, which is what keeps the layout breathing
+     on large screens instead of letting content run into the bezel. */
+  --section-gutter: clamp(2rem, calc(2rem + (100vw - 87.5rem) * 0.06), 5rem);
+
+  /* One canonical control height for every pill button. Height is driven by
+     this token rather than emerging from font-size + padding, so buttons stay
+     equal even when their label size differs between sections. Fluid past the
+     reference width for the same reason the headings are — a 48px pill on a 4K
+     page reads as a control that was designed for a smaller screen. Deliberately
+     a gentler rate than the headings use: controls are sized by the hand, not by
+     the canvas, so they grow noticeably less than proportionally. 48px and 24px
+     exactly up to 1400px, 1.5x at their ceiling. */
+  --button-height: clamp(3rem, calc(3rem + (100vw - 87.5rem) * 0.02), 4.5rem);
+  --button-padding-x: clamp(1.5rem, calc(1.5rem + (100vw - 87.5rem) * 0.01), 2.25rem);
+}
+
+/* Past the old 1400px canvas the display scale resumes climbing instead of
+   stopping dead — a title frozen at its 1400px size inside a 2560px section is
+   exactly what makes a widened page read as a stretched one. Each size picks up
+   from the value it had reached at 1400px and continues at its own original vw
+   rate up to a 1.5x ceiling, so the curve is continuous at the boundary and
+   every width at or below 1400px is untouched. The same three lines appear on
+   the individual display headings in their own files. */
+@media (min-width: 87.5rem) {
+  :root {
+    --text-4xl: min(calc(3.75rem + (100vw - 87.5rem) * 0.05), 5.625rem);
+    --text-5xl: min(calc(3.25rem + (100vw - 87.5rem) * 0.06), 4.875rem);
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --section-gutter: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-gutter: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --section-gutter: 1rem;
+  }
 }

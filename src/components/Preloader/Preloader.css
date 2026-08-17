@@ -1,0 +1,124 @@
+.preloader {
+  position: fixed;
+  inset: 0;
+  /* Must clear the navbar, which sits at z-index 10000000, so the mark stays on
+     top of the header for the whole flight and lands over it. */
+  z-index: 10000001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* The black lives on its own layer rather than on .preloader itself: fading the
+   parent would fade the travelling mark with it. */
+.preloader__backdrop {
+  position: absolute;
+  inset: 0;
+  background: #000000;
+}
+
+/* Starts once the mark is a third of the way to the navbar, matching REVEAL_AT
+   in Preloader.jsx — the page appears behind the logo while it is still moving. */
+.preloader[data-phase='flying'] .preloader__backdrop {
+  opacity: 0;
+  transition: opacity 620ms cubic-bezier(0.76, 0, 0.24, 1) 315ms;
+}
+
+/* Once the mark is travelling the overlay must not eat clicks on the page that
+   is being revealed underneath it. */
+.preloader[data-phase='flying'] {
+  pointer-events: none;
+}
+
+.preloader__inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 var(--section-gutter);
+}
+
+.preloader__mark {
+  width: auto;
+  height: 88px;
+  display: block;
+  overflow: visible;
+  /* An explicit identity transform gives the flight a matrix to interpolate
+     from; transitioning out of `none` is not reliably animatable. */
+  transform: translate(0, 0) scale(1);
+  transform-origin: center;
+}
+
+.preloader[data-phase='flying'] .preloader__mark {
+  will-change: transform;
+}
+
+.preloader__word {
+  display: flex;
+  margin-top: 1.35rem;
+  font-family: var(--font-family);
+  font-size: 1.25rem;
+  line-height: 1;
+  color: #ffffff;
+  /* Matches the navbar lockup's tracking, minus the trailing gap. */
+  letter-spacing: 0.33em;
+  text-indent: 0.33em;
+}
+
+.preloader__word span {
+  display: inline-block;
+}
+
+.preloader__tagline {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.preloader__meter {
+  margin-top: 1.75rem;
+  width: min(230px, 60vw);
+  height: 1px;
+  background: rgba(255, 255, 255, 0.16);
+  overflow: hidden;
+}
+
+.preloader__meter-fill {
+  width: 100%;
+  height: 100%;
+  background: #FF4600;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+/* Everything except the mark clears out first. They keep their layout space so
+   the mark does not jump before it starts travelling. */
+.preloader[data-phase='settling'] .preloader__word,
+.preloader[data-phase='settling'] .preloader__tagline,
+.preloader[data-phase='settling'] .preloader__meter,
+.preloader[data-phase='flying'] .preloader__word,
+.preloader[data-phase='flying'] .preloader__tagline,
+.preloader[data-phase='flying'] .preloader__meter {
+  opacity: 0;
+  transition: opacity 260ms cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+@media (max-width: 480px) {
+  .preloader__mark {
+    height: 68px;
+  }
+
+  .preloader__word {
+    font-size: 1rem;
+    margin-top: 1.1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preloader__meter-fill {
+    transition: none;
+  }
+}

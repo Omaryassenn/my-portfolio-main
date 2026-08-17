@@ -4,20 +4,21 @@
   left: 0;
   right: 0;
   z-index: 10000000;
-  background-color: var(--nav-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   transition: all 0.3s ease;
+  padding: 0 var(--section-gutter);
 }
 
 .navbar-scrolled {
-  background: var(--nav-bg);
+  background: rgba(0, 0, 0, 0.55);
 }
 
 .nav-content {
-  max-width: 1465px;
+  max-width: var(--section-max-width);
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 1rem 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -26,41 +27,104 @@
 .navbar-logo {
   display: flex;
   align-items: center;
+  gap: 4px;
 }
 
-.navbar-logo img {
-  height: 40px;
+.navbar-logo-mark {
+  height: clamp(42px, 3vw, 60px);
   width: auto;
-  transition: all 0.3s ease;
+  /* Deliberately not `all`: the intro hands this mark over by flipping its
+     opacity, and transitioning that would cross-fade the swap instead of making
+     it the single instant frame it needs to be. */
+  transition: height 0.3s ease;
 }
 
-.nav-links {
+.navbar-logo-text {
   display: flex;
-  gap: 2rem;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #ffffff;
+}
+
+.navbar-logo-name {
+  font-family: var(--font-family);
+  font-size: 16px;
+  letter-spacing: 5.28px;
+  line-height: 24px;
+}
+
+.navbar-logo-tagline {
+  font-family: var(--font-family);
+  font-size: 10px;
+  letter-spacing: -0.5px;
+  line-height: 10px;
+}
+
+/* On desktop the wrapper dissolves so the logo, link list and CTA are all
+   direct flex children of .nav-content — matching the Figma row. */
+.nav-links {
+  display: contents;
+}
+
+/* Figma spreads the five links evenly across a 696px block. That block is now
+   the floor rather than a constant: past the 1400px reference width it widens
+   with the viewport, so the links keep pace with the logo and CTA moving out to
+   the edges instead of huddling in the middle of an ultrawide bar. The gap acts
+   as a floor so the links never touch once the block starts shrinking. */
+.nav-links-list {
+  display: flex;
   align-items: center;
+  justify-content: space-between;
+  flex: 0 1 clamp(43.5rem, 49.7vw, 60rem);
+  min-width: 0;
+  gap: 1.5rem;
+}
+
+.nav-links-list a {
+  white-space: nowrap;
 }
 
 .nav-links a {
-  color: var(--text-color);
+  color: #b3b3b3;
   text-decoration: none;
-  font-size: 0.9375rem;
-  font-weight: var(--font-medium);
+  font-family: var(--font-family);
+  font-size: clamp(1rem, 1.14vw, 1.375rem);
+  font-weight: var(--font-regular);
   transition: color 0.3s ease;
 }
 
+.nav-links a.active {
+  color: #ffffff;
+  font-weight: var(--font-medium);
+}
+
 .nav-links a:hover {
-  color: var(--accent-color);
+  color: #ffffff;
 }
 
 .nav-button {
-  margin-left: 0.5rem;
+  text-transform: uppercase;
+}
+
+/* Only the links block absorbs shrinkage — the logo and CTA keep their size. */
+.navbar-logo,
+.nav-button {
+  flex-shrink: 0;
+}
+
+/* Below the Figma reference width the fixed 696px block would squeeze the
+   logo/CTA gaps to nothing, so let it hug its content instead. */
+@media (max-width: 1200px) {
+  .nav-links-list {
+    flex-basis: auto;
+  }
 }
 
 .nav-cta {
   background: var(--accent-color);
   color: #ffffff !important;
-  padding: 0.75rem 1.5rem;
-  border-radius: 50px;
+  padding: clamp(0.75rem, 0.86vw, 1.125rem) var(--button-padding-x);
+  border-radius: 0;
   font-weight: var(--font-medium);
   transition: all 0.3s ease !important;
 }
@@ -74,19 +138,20 @@
 
 @media (max-width: 768px) {
   .nav-content {
-    padding: 1rem;
-  }
-
-  .nav-links {
-    gap: 1rem;
+    padding: 1rem 0;
   }
 
   .nav-links a {
     font-size: 14px;
   }
 
-  .navbar-logo img {
+  .navbar-logo-mark {
     height: 32px;
+  }
+
+  .navbar-logo-name {
+    font-size: 13px;
+    letter-spacing: 4px;
   }
 }
 
@@ -95,7 +160,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: 0 0 20px 20px;
+  border-radius: 0;
   transition: opacity 0.3s ease;
   opacity: 0;
   pointer-events: none;
@@ -104,11 +169,6 @@
 .navbar-scrolled::before {
   opacity: 1;
 }
-
-.navbar-logo span {
-  font-size: var(--text-xl);
-  font-weight: var(--font-bold);
-} 
 
 .navbar-tabs {
   list-style: none;
@@ -126,7 +186,7 @@
 }
 
 .navbar-tabs li a:hover {
-  color: #00ffff; /* Example hover color - corrected */
+  color: var(--accent-color);
 }
 
 .navbar-mode-switch button {
@@ -150,13 +210,13 @@
 }
 
 .mode-switch-button:hover {
-  color: #00ffff; /* Example hover color */
+  color: var(--accent-color);
 } 
 
 .hamburger {
   display: none;
   font-size: 24px;
-  color: var(--text-color);
+  color: #ffffff;
   cursor: pointer;
 }
 
@@ -165,27 +225,54 @@
     display: block;
   }
 
+  /* The dropdown needs a real box again, so the wrapper stops being display:contents. */
   .nav-links {
+    display: flex;
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    background: var(--nav-bg);
+    /* Fill everything below the bar. The panel is absolutely positioned inside
+       .navbar, so 100% resolves to the bar's own height — subtracting it from
+       the viewport leaves an exactly full-height sheet with no overflow. */
+    height: calc(100vh - 100%);
+    height: calc(100dvh - 100%);
+    /* Near-opaque, not glass: .navbar already has a backdrop-filter, which
+       makes it a backdrop root, so a nested blur here can only sample the bar
+       itself — the page behind would show straight through a translucent
+       sheet. At full height that made the hero text unreadable. */
+    background: rgba(0, 0, 0, 0.96);
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
-    padding: 1.5rem;
+    padding: 2rem var(--section-gutter) calc(2rem + env(safe-area-inset-bottom, 0px));
+    /* Short/landscape screens can still outgrow the sheet. */
+    overflow-y: auto;
     transform: translateY(-200%);
     opacity: 0;
     transition: transform 0.3s ease, opacity 0.3s ease;
     z-index: 999;
   }
 
+  /* Links take the free space and centre within it, leaving the CTA pinned
+     to the bottom of the sheet. */
+  .nav-links-list {
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+  }
+
+  .nav-links .nav-button {
+    flex: 0 0 auto;
+  }
+
   .nav-links.open {
     transform: translateY(0);
     opacity: 1;
-    background-color: var(--bg-color);
-    border-top: 1px solid rgba(var(--text-rgb), 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .nav-links a {

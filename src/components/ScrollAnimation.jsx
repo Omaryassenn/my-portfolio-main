@@ -2,10 +2,13 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 
-const ScrollAnimation = ({ children, direction = 'up', delay = 0, className = '' }) => {
+// `animateOnMount` is for above-the-fold content. Scroll-gating it can deadlock:
+// the hidden state offsets the element downward, which can push it out of the
+// in-view detection zone, so the reveal never triggers until the user scrolls.
+const ScrollAnimation = ({ children, direction = 'up', delay = 0, className = '', animateOnMount = false }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { 
-    once: true, 
+  const isInView = useInView(ref, {
+    once: true,
     margin: "-100px",
     amount: 0.3
   });
@@ -37,7 +40,7 @@ const ScrollAnimation = ({ children, direction = 'up', delay = 0, className = ''
     <motion.div
       ref={ref}
       initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
+      animate={animateOnMount || isInView ? "visible" : "hidden"}
       variants={animations[direction]}
       transition={{ 
         duration: 0.6, 

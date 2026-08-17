@@ -7,7 +7,11 @@
   background: var(--bg-color);
   min-height: 100vh;
   transition: background-color 0.3s ease;
-  overflow-x: hidden;
+  /* Deliberately not overflow-x: hidden. That computes overflow-y to `auto`,
+     which makes #root a scroll container — and a scroll container that never
+     scrolls, so every position: sticky inside the page silently stops sticking.
+     The horizontal clip is handled by body (which propagates to the viewport)
+     and by the individual full-bleed sections. */
 }
 
 .app {
@@ -19,8 +23,38 @@
 .app > section + footer {
   margin-top: var(--section-gap);
 }
+
+/* Contains the hero/reveal pair in its own stacking context so the pinned hero
+   and the panel sliding over it cannot paint above later sections. z-index on a
+   relative element does not create a containing block, so ScrollTrigger's
+   position: fixed pinning still works inside. */
+.hero-reveal-group {
+  position: relative;
+  z-index: 0;
+}
+
+/* Intro handoff. The page is held invisible behind the preloader, then faded up
+   while the logo is still flying into the navbar. Only opacity is touched, never
+   layout — the navbar has to stay measurable the whole time so the flight can
+   read its logo's final rect, and the hero's pin must not be re-measured.
+   The preloader is excluded so it is not hidden by its own overlay rule. */
+.app--intro > *:not(.preloader) {
+  opacity: 0;
+}
+
+.app--revealed > *:not(.preloader) {
+  opacity: 1;
+  transition: opacity 620ms cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* The navbar's own mark is held back until the flying one has landed on it, so
+   there is never a duplicate or a visible swap. No transition, so the handover
+   is a single instant frame rather than a cross-fade. */
+.intro-logo-flying .navbar-logo-mark {
+  opacity: 0;
+}
 ::selection{
-  background-color: #01E8FF;
+  background-color: var(--accent-color);
   color: rgb(0, 0, 0);
 }
 ::-webkit-scrollbar{
@@ -28,12 +62,18 @@
 }
 ::-webkit-scrollbar-track{
   background-color: var(--bg-color);
-  
+
 }
 ::-webkit-scrollbar-thumb{
-  background-color: rgb(0, 255, 255);
-  border-radius: 50px;
+  background-color: rgba(var(--accent-color-rgb), 0.7);
+  border-radius: 0;
 }
 ::-webkit-scrollbar-thumb:hover{
   background-color: var(--accent-color);
+}
+
+/* Firefox has no ::-webkit-scrollbar, so it kept the default grey bar. */
+html {
+  scrollbar-color: var(--accent-color) var(--bg-color);
+  scrollbar-width: thin;
 }

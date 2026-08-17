@@ -16,12 +16,12 @@
   background: none;
   border: none;
   color: rgba(255, 255, 255, 0.5);
-  font-size: var(--text-lg);
+  font-size: clamp(1.25rem, 1.43vw, 1.75rem);
   font-weight: var(--font-medium);
   cursor: pointer;
   padding: 0.5rem;
-  min-width: 40px;
-  height: 40px;
+  min-width: clamp(40px, 2.86vw, 56px);
+  height: clamp(40px, 2.86vw, 56px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,9 +29,9 @@
 }
 
 .pagination-number.active {
-  background: #01E8FF;
+  background: var(--accent-color);
   color: black;
-  border-radius: 8px;
+  border-radius: 0;
 }
 
 .pagination-number:hover:not(.active) {
@@ -60,6 +60,6 @@
 }
 
 .pagination-arrow svg {
-  width: 24px;
-  height: 24px;
+  width: clamp(24px, 1.71vw, 32px);
+  height: clamp(24px, 1.71vw, 32px);
 } 

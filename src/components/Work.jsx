@@ -1,164 +1,185 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import './Work.css';
 import hawkeye from '../assets/hawksm.svg';
 import hawkeyeMobile from '../assets/hawksm.svg';
 import onerythme from '../assets/One.svg';
 import neuropulse from '../assets/Neuropulse.svg';
 import fabmarket from '../assets/fab.svg';
-import sec from '../assets/secone.svg';
 import stackaroo from '../assets/stack.svg';
 import chic from '../assets/chic.svg';
 import inno from '../assets/innocreatives.svg';
-import coffe from '../assets/coffe.svg';
-import broskies from '../assets/broskies.svg';
 import stego from '../assets/stego.svg';
 import banking from '../assets/banking.svg';
-import order from '../assets/orders.svg';
-import job from '../assets/job.svg';
 import workhub from '../assets/workhub.svg';
 import readlyai from '../assets/ReadlyAI.svg';
-import { FiArrowUpRight } from 'react-icons/fi';
-import Pagination from './Pagination';
+import { FiArrowUpRight, FiArrowLeft, FiArrowRight } from 'react-icons/fi';
+
+const VIEW_ALL = 'https://dribbble.com/OmarYassenn';
+
+const PROJECTS = [
+  
+  {
+    title: 'WorkHub Egypt',
+    image: workhub,
+    link: 'https://www.behance.net/gallery/228002787/WorkHub-Egypt?tracking_source=search_projects|workhub+egypt&l=0',
+  },
+  {
+    title: 'NeuroPulse Landing-Page',
+    image: neuropulse,
+    link: 'https://dribbble.com/shots/25991747-AI-Startup-Responsive-Landing-Page',
+  },
+  {
+    title: 'FAB Market Mobile App',
+    image: fabmarket,
+    link: 'https://dribbble.com/shots/24840522-NatureNosh-Wholesale-supply-app',
+  },
+  {
+    title: 'Hawk-Eye Website',
+    image: { desktop: hawkeye, mobile: hawkeyeMobile },
+    link: 'https://dribbble.com/shots/25752521-HawkEye-Revolutionizing-RFP-Analysis-with-AI',
+  },
+  {
+    title: 'Inno-Creatives',
+    image: inno,
+    link: 'https://dribbble.com/shots/25868593-Landing-Page-for-an-agency-company',
+  },
+  {
+    title: 'OneRythme Dashboards',
+    image: onerythme,
+    link: 'https://dribbble.com/shots/26007618-Dashboard-Analysis',
+  },
+  {
+    title: 'Stackaroo',
+    image: stackaroo,
+    link: 'https://dribbble.com/shots/25895850-A-Cartoon-Themed-Landing-Page-for-Effortless-DevOps',
+  },
+  {
+    title: 'Chic Interiors',
+    image: chic,
+    link: 'https://dribbble.com/shots/25885873-Chic-Interiors-Landing-Page',
+  },
+  
+  {
+    title: 'Banking Company',
+    image: banking,
+    link: 'https://dribbble.com/shots/25840708-A-landing-page-for-a-banking-company',
+  },
+  {
+    title: 'ReadlyAI',
+    image: readlyai,
+    link: 'https://dribbble.com/shots/26161257-AI-SaaS-Hero-Section',
+  },
+  {
+    title: 'Stegnography',
+    image: stego,
+    link: 'https://dribbble.com/shots/22322962-Steganography-Landing-page',
+  },
+];
+
+/* Read off the link rather than stored twice: where a piece lives is a fact
+   about its URL, and a hand-kept copy of it would drift. */
+const hostOf = (url) => {
+  if (/dribbble\.com/i.test(url)) return 'Dribbble';
+  if (/behance\.net/i.test(url)) return 'Behance';
+  return 'Case study';
+};
+
+const pad = (n) => String(n).padStart(2, '0');
 
 const Work = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [loadedImages, setLoadedImages] = useState({});
-  const projectsPerPage = 4;
+  const railRef = useRef(null);
+  const [loaded, setLoaded] = useState({});
+  const [progress, setProgress] = useState({ start: 0, size: 1, atStart: true, atEnd: false });
 
-  const allProjects = [
-    {
-      title: 'Hawk-Eye Website',
-     
-      image: {
-        desktop: hawkeye,
-        mobile: hawkeyeMobile
-      },
-      size: 'small',
-      link: 'https://dribbble.com/shots/25752521-HawkEye-Revolutionizing-RFP-Analysis-with-AI',
-    },
-    {
-      title: 'WorkHub Egypt',
-     
-      image: workhub,
-      size: 'big',
-      link: 'https://www.behance.net/gallery/228002787/WorkHub-Egypt?tracking_source=search_projects|workhub+egypt&l=0',
-    },
-    {
-      title: 'NeuroPulse Landing-Page',
-     
-      image: neuropulse,
-      size: 'medium',
-      link: 'https://dribbble.com/shots/25991747-AI-Startup-Responsive-Landing-Page',
-    },
-    {
-      title: 'FAB Market Mobile App',
-     
-      image: fabmarket,
-      size: 'medium',
-      link: 'https://dribbble.com/shots/24840522-NatureNosh-Wholesale-supply-app',
-    },
-    {
-      title: 'Inno-Creatives',
-     
-      image: inno,
-      size: 'small',
-      link: 'https://dribbble.com/shots/25868593-Landing-Page-for-an-agency-company',
-    },
-    {
-      title: 'OneRythme Dashboards',
-     
-      image: onerythme,
-      size: 'big',
-      link: 'https://dribbble.com/shots/26007618-Dashboard-Analysis',
-    },
-    {
-      title: 'Stackaroo',
-     
-      image: stackaroo,
-      size: 'medium',
-      link: 'https://dribbble.com/shots/25895850-A-Cartoon-Themed-Landing-Page-for-Effortless-DevOps',
-    },
-    {
-      title: 'Chic Interiors',
-     
-      image: chic,
-      size: 'medium',
-      link: 'https://dribbble.com/shots/25885873-Chic-Interiors-Landing-Page',
-    },
-    {
-      title: 'Stegnography',
-     
-      image: stego,
-      size: 'small',
-      link: 'https://dribbble.com/shots/22322962-Steganography-Landing-page',
-    },
-    {
-      title: 'Banking Company',
-     
-      image: banking,
-      size: 'big',
-      link: 'https://dribbble.com/shots/25840708-A-landing-page-for-a-banking-company',
-    },
-    {
-      title: 'ReadlyAI',
-     
-      image: readlyai,
-      size: 'medium',
-      link: 'https://dribbble.com/shots/26161257-AI-SaaS-Hero-Section',
-    }, 
-    
-    
-  ];
+  const handleImageLoad = (title) => setLoaded((prev) => ({ ...prev, [title]: true }));
 
-  const totalPages = Math.ceil(allProjects.length / projectsPerPage);
-  const indexOfLastProject = currentPage * projectsPerPage;
-  const indexOfFirstProject = indexOfLastProject - projectsPerPage;
-  const currentProjects = allProjects.slice(indexOfFirstProject, indexOfLastProject);
+  /* One indicator doing two jobs: how much of the rail is on screen (the bar's
+     width) and where in it you are (its offset). */
+  const syncProgress = useCallback(() => {
+    const rail = railRef.current;
+    if (!rail) return;
+    const scrollable = rail.scrollWidth - rail.clientWidth;
+    const size = rail.scrollWidth ? rail.clientWidth / rail.scrollWidth : 1;
+    const ratio = scrollable > 1 ? rail.scrollLeft / scrollable : 0;
+    setProgress({
+      size,
+      start: ratio * (1 - size),
+      atStart: rail.scrollLeft <= 1,
+      atEnd: scrollable > 1 ? rail.scrollLeft >= scrollable - 1 : true,
+    });
+  }, []);
 
-  const handleImageLoad = (projectTitle) => {
-    setLoadedImages(prev => ({
-      ...prev,
-      [projectTitle]: true
-    }));
-  };
+  useEffect(() => {
+    const rail = railRef.current;
+    if (!rail) return undefined;
+    syncProgress();
+    const ro = new ResizeObserver(syncProgress);
+    ro.observe(rail);
+    return () => ro.disconnect();
+  }, [syncProgress]);
 
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-    setLoadedImages({}); // Reset loaded images state when changing page
-    document.querySelector('.work-section').scrollIntoView({ behavior: 'smooth' });
+  // A card plus its gap, so a step always lands on a card edge.
+  const step = (direction) => {
+    const rail = railRef.current;
+    if (!rail) return;
+    const card = rail.querySelector('.project');
+    const gap = parseFloat(getComputedStyle(rail).columnGap) || 0;
+    const distance = card ? card.getBoundingClientRect().width + gap : rail.clientWidth * 0.8;
+    rail.scrollBy({ left: distance * direction, behavior: 'smooth' });
   };
 
   return (
-    <section className="work-section" id="work">
-      <h2 className="work-title">
-        My <span>Work</span>
-      </h2>
-      <div className="work-grid">
-        {currentProjects.map((project, index) => (
+    <section className="work" id="work" aria-labelledby="work-title">
+      <div className="work__inner">
+        <header className="work__head">
+          <span className="work__eyebrow">Selected work</span>
+          <span className="work__rule" aria-hidden="true" />
+          
+        </header>
+
+        <div className="work__lede">
+          <h2 className="work__title" id="work-title">
+            Interfaces designed and shipped
+            <span className="work__accent" aria-hidden="true">
+              *
+            </span>
+          </h2>
+
+          <a className="work__all" href={VIEW_ALL} target="_blank" rel="noopener noreferrer">
+            Open Dribbble
+            <FiArrowUpRight aria-hidden="true" />
+          </a>
+        </div>
+      </div>
+
+      {/* Breaks the gutter so the rail runs off both edges of the screen, while
+          the first card still starts on the page's own margin. */}
+      <div className="work__rail" ref={railRef} onScroll={syncProgress}>
+        {PROJECTS.map((project, i) => (
           <a
-            key={index}
+            key={project.title}
+            className="project"
             href={project.link}
-            className={`work-card ${project.size}`}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`View ${project.title} project`}
+            aria-label={`View ${project.title} on ${hostOf(project.link)}`}
           >
-            <div className="card-content">
-              {!loadedImages[project.title] && <div className="skeleton-loader" />}
+            <div className="project__media">
+              {!loaded[project.title] && <span className="project__skeleton" aria-hidden="true" />}
               {typeof project.image === 'object' ? (
                 <>
                   <img
                     src={project.image.desktop}
                     alt={project.title}
-                    className="desktop-image"
-                    style={{ opacity: loadedImages[project.title] ? 1 : 0 }}
+                    className="project__img project__img--desktop"
+                    style={{ opacity: loaded[project.title] ? 1 : 0 }}
                     onLoad={() => handleImageLoad(project.title)}
                   />
                   <img
                     src={project.image.mobile}
-                    alt={project.title}
-                    className="mobile-image"
-                    style={{ opacity: loadedImages[project.title] ? 1 : 0 }}
+                    alt=""
+                    className="project__img project__img--mobile"
+                    style={{ opacity: loaded[project.title] ? 1 : 0 }}
                     onLoad={() => handleImageLoad(project.title)}
                   />
                 </>
@@ -166,30 +187,65 @@ const Work = () => {
                 <img
                   src={project.image}
                   alt={project.title}
-                  style={{ opacity: loadedImages[project.title] ? 1 : 0 }}
+                  className="project__img"
+                  style={{ opacity: loaded[project.title] ? 1 : 0 }}
                   onLoad={() => handleImageLoad(project.title)}
                 />
               )}
-              <div className="card-overlay">
-                <div className="card-info">
-                  <p className="card-role">{project.role}</p>
-                  <h3 className="card-title">{project.title}</h3>
-                </div>
-                <span className="card-arrow" aria-hidden="true">
-                  <FiArrowUpRight />
+            </div>
+
+            <div className="project__bar">
+              <span className="project__text">
+                <span className="project__meta">
+                  <span className="project__index">{pad(i + 1)}</span>
+                  {hostOf(project.link)}
                 </span>
-              </div>
+                <span className="project__name">{project.title}</span>
+              </span>
+              <span className="project__go" aria-hidden="true">
+                <FiArrowUpRight />
+              </span>
             </div>
           </a>
         ))}
       </div>
-      <Pagination 
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
+
+      <div className="work__inner">
+        <div className="work__controls">
+          <div className="work__progress" aria-hidden="true">
+            <span
+              className="work__progress-bar"
+              style={{
+                width: `${progress.size * 100}%`,
+                transform: `translateX(${(progress.start / Math.max(progress.size, 0.0001)) * 100}%)`,
+              }}
+            />
+          </div>
+
+          <div className="work__nav">
+            <button
+              type="button"
+              className="work__arrow"
+              onClick={() => step(-1)}
+              disabled={progress.atStart}
+              aria-label="Previous projects"
+            >
+              <FiArrowLeft />
+            </button>
+            <button
+              type="button"
+              className="work__arrow"
+              onClick={() => step(1)}
+              disabled={progress.atEnd}
+              aria-label="Next projects"
+            >
+              <FiArrowRight />
+            </button>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
 
-export default Work; 
+export default Work;
