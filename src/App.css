@@ -77,3 +77,79 @@ html {
   scrollbar-color: var(--accent-color) var(--bg-color);
   scrollbar-width: thin;
 }
+
+/* --- Toast ----------------------------------------------------------------- */
+/* The container is rendered at the app root (see App.jsx) so these rules live
+   here rather than beside the one form that happens to raise a toast.
+   Every selector below is doubled up on purpose: ReactToastify.css comes from
+   node_modules and is injected after this file, so single-class overrides lose
+   the cascade to its own single-class rules — including the ones inside its
+   max-width: 480px block, which is why the toast sat flush to the edge. */
+
+.Toastify__toast-container.Toastify__toast-container {
+  /* One step above the navbar, which sits at 10000000. */
+  z-index: 10000001;
+}
+
+/* Clear of the bottom edge on desktop; the mobile block below re-anchors it. */
+.Toastify__toast-container.Toastify__toast-container--bottom-right {
+  right: clamp(1rem, 3vw, 1.5rem);
+  bottom: clamp(1rem, 3vh, 1.5rem);
+}
+
+.Toastify__toast.Toastify__toast {
+  background: var(--card-bg);
+  color: var(--text-color);
+  font-family: var(--font-family);
+  border-radius: 0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(var(--text-rgb), 0.1);
+}
+
+.Toastify__toast-body.Toastify__toast-body {
+  font-size: var(--text-base);
+  font-weight: var(--font-regular);
+  padding: 0.5rem;
+}
+
+.Toastify__progress-bar.Toastify__progress-bar {
+  background: linear-gradient(to right, var(--accent-color), var(--text-color));
+}
+
+.Toastify__close-button.Toastify__close-button {
+  color: var(--text-color);
+  opacity: 0.7;
+}
+
+.Toastify__close-button.Toastify__close-button:hover {
+  opacity: 1;
+}
+
+.Toastify__toast.Toastify__toast--success {
+  border-left: 4px solid var(--accent-color);
+}
+
+.Toastify__toast.Toastify__toast--error {
+  border-left: 4px solid #ff4444;
+}
+
+/* Inset from both edges and lifted above the home indicator, so the whole toast
+   is on screen instead of half-lost against the bottom of the viewport. */
+@media (max-width: 480px) {
+  .Toastify__toast-container.Toastify__toast-container--bottom-right {
+    left: 0;
+    right: 0;
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+    width: auto;
+    padding: 0 1rem;
+    margin: 0;
+    transform: none;
+  }
+
+  .Toastify__toast.Toastify__toast {
+    margin-bottom: 0.75rem;
+    border-radius: 0;
+  }
+}

@@ -28,6 +28,15 @@
   display: flex;
   align-items: center;
   gap: 4px;
+  /* No padding or border: the intro measures this mark's rect to land the
+     flying logo on it, so the anchor has to be the same box the img was. */
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.navbar-logo:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 6px;
 }
 
 .navbar-logo-mark {

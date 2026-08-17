@@ -101,13 +101,20 @@ const Navbar = () => {
   return (
     <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
       <div className="nav-content">
-        <div className="navbar-logo">
+        {/* Same target as the Home link — the mark is the usual way back to the
+            top, so it runs through the same handler rather than its own path. */}
+        <a
+          href="#home"
+          className="navbar-logo"
+          aria-label="Back to top"
+          onClick={(e) => handleNavClick(e, 'home')}
+        >
           <img src={navLogo} alt="" className="navbar-logo-mark" />
           {/* <div className="navbar-logo-text">
             <span className="navbar-logo-name">OMAR</span>
             <span className="navbar-logo-tagline">Designer • Developer</span>
           </div> */}
-        </div>
+        </a>
 
         {/* Hamburger icon */}
         <div className="hamburger" onClick={toggleMenu} aria-label="Toggle navigation menu">

@@ -2,17 +2,14 @@ import React from 'react';
 import './Contact.css';
 import Button from './Button';
 import { FiArrowUpRight, FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
-const TOAST_STYLE = {
-  background: 'var(--card-bg)',
-  color: 'var(--text-color)',
-  borderRadius: '0',
-  border: '1px solid rgba(var(--text-rgb), 0.1)',
-  fontSize: '1rem',
-  fontFamily: 'var(--font-family)',
-};
+/* The container itself lives at the app root, not here: this section sets
+   `isolation: isolate`, which would trap a toast rendered inside it in the
+   section's own stacking context and let the fixed navbar paint over it.
+   Appearance is all in App.css — an inline `style` here would outrank it and
+   flatten the per-type accent border back to the plain hairline. */
+const TOAST_OPTIONS = { autoClose: 3000, theme: 'dark' };
 
 /* The placeholder is an example, never a repeat of the label — the label is
    already sitting above the field, so echoing it there would say nothing and
@@ -74,51 +71,18 @@ const Contact = () => {
       });
 
       if (response.ok) {
-        toast.success('Message sent successfully!', {
-          position: 'top-center',
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'dark',
-          style: TOAST_STYLE,
-        });
+        toast.success('Message sent successfully!', TOAST_OPTIONS);
         e.target.reset(); // Clear form
       } else {
-        toast.error('Failed to send message. Please try again.', {
-          position: 'top-center',
-          theme: 'dark',
-          style: TOAST_STYLE,
-        });
+        toast.error('Failed to send message. Please try again.', TOAST_OPTIONS);
       }
     } catch (error) {
-      toast.error('An error occurred. Please try again later.', {
-        position: 'top-center',
-        theme: 'dark',
-        style: TOAST_STYLE,
-      });
+      toast.error('An error occurred. Please try again later.', TOAST_OPTIONS);
     }
   };
 
   return (
     <section className="contact" id="contact" aria-labelledby="contact-title">
-      <ToastContainer
-        position="top-center"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-        style={{ top: '20px' }}
-        toastStyle={TOAST_STYLE}
-      />
-
       {/* Ambience, both decorative: a low accent haze and the word itself set
           oversize behind the content, fading out before it reaches the form. */}
       <span className="contact__glow" aria-hidden="true" />

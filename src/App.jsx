@@ -9,6 +9,8 @@ import Work from './components/Work';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import Navbar from './components/Navbar';
 import { ThemeProvider } from './context/ThemeContext';
@@ -67,6 +69,21 @@ function App() {
         <Contact />
         <Footer />
       </div>
+
+      {/* Outside .app so no section's stacking context or intro opacity can
+          swallow it, and anchored to the bottom so it never lands under the
+          fixed navbar the way a top-centred toast did. */}
+      <ToastContainer
+        position="bottom-right"
+        autoClose={3000}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </ThemeProvider>
   );
 }
