@@ -16,10 +16,16 @@
     <meta property="og:url" content="https://omaryassen.vercel.app/">
     <meta property="og:title" content="Omar Yassen - UI/UX Designer & Frontend Developer">
     <meta property="og:description" content="I craft seamless user experiences and build responsive, accessible, and performant web applications.">
+    <!-- Dimensions must match the file byte for byte: scrapers reserve the card's
+         space from these before the image arrives, so a wrong ratio gets the
+         artwork letterboxed or cropped. cover.png is 1024x576 (16:9), not the
+         1200x630 that was declared here. The type is stated explicitly because
+         the file is JPEG data under a .png name. -->
     <meta property="og:image" content="https://omaryassen.vercel.app/cover.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Omar Yassen's Portfolio">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="576">
+    <meta property="og:image:alt" content="Crafted by Omar — Omar Yassen's portfolio">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
@@ -27,7 +33,7 @@
     <meta property="twitter:title" content="Omar Yassen - UI/UX Designer & Frontend Developer">
     <meta property="twitter:description" content="I craft seamless user experiences and build responsive, accessible, and performant web applications.">
     <meta property="twitter:image" content="https://omaryassen.vercel.app/cover.png">
-    <meta property="twitter:image:alt" content="Omar Yassen's Portfolio">
+    <meta property="twitter:image:alt" content="Crafted by Omar — Omar Yassen's portfolio">
   </head>
   <body>
     <div id="root"></div>
