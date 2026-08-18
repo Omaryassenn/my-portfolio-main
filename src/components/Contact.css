@@ -434,10 +434,14 @@ a.info-card:hover .info-card__go svg {
 }
 
 @media (max-width: 480px) {
-  /* Sized to sit inside the viewport rather than bleed past both edges — at
-     this width the bleed read as a broken heading, not as ambience. */
+  /* Set to span the viewport edge to edge instead of bleeding past it, which
+     at this width read as a broken heading rather than as ambience. "CONTACT"
+     in this face measures 4.73x its own font-size, so 100vw / 4.73 is the size
+     that fills the line exactly — and because both sides of that are in vw it
+     holds at every phone width, not just the one it was measured at. No clamp:
+     a floor or ceiling here is precisely what would stop it filling. */
   .contact__ghost {
-    font-size: clamp(2rem, 15vw, 4rem);
+    font-size: 21.1vw;
   }
 
   .field--message .field__input {

@@ -329,7 +329,7 @@ const Experience = () => {
             {pad(ROLE_COUNT)} roles · {TIMELINE[0].year} — now
           </p>
 
-          <span className="xp-intro__cue" aria-hidden="true" />
+          
         </div>
       </section>
 
