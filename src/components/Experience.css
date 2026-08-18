@@ -34,7 +34,7 @@
      so the file never lands in dist and the backdrop is missing in production.
      This form gets hashed and emitted with the build. */
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.8) 100%),
-    url('../assets/sharath-kumar-hari-CaQYGwIGC3g-unsplash.jpg') lightgray 50% / cover no-repeat;
+    url('../assets/xp-backdrop.webp') lightgray 50% / cover no-repeat;
 }
 
 .xp-intro__inner {

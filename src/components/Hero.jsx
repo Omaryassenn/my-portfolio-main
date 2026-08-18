@@ -4,7 +4,7 @@ import { FiArrowUpRight } from 'react-icons/fi';
 import Button from './Button';
 import ScrollAnimation from './ScrollAnimation';
 import TargetCursor from './TargetCursor/TargetCursor';
-import heroPortrait from '../assets/hero-portrait.png';
+import heroPortrait from '../assets/hero-portrait.webp';
 import { scrollToSection } from '../lib/smoothScroll';
 
 const Hero = () => {
