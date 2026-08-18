@@ -68,7 +68,7 @@
    share the same x. Cancelling each element's own bearing lands both sets of
    glyphs flush on the same optical edge. */
 .hero-tagline {
-  font-size: clamp(1.25rem, 2.6vw, 3.75rem);
+  font-size: clamp(1.25rem, 2.4vw, 3.75rem);
   line-height: 1.4;
   margin: 0 0 0 -0.09em;
 }
@@ -137,7 +137,7 @@
    a 1.5x ceiling — continuous at the boundary, and nothing below it changes. */
 @media (min-width: 87.5rem) {
   .hero-name {
-    font-size: min(calc(11.5rem + (100vw - 87.5rem) * 0.135), 17.25rem);
+    font-size: min(calc(10.3rem + (100vw - 87.5rem) * 0.135), 17.25rem);
   }
 }
 
