@@ -34,14 +34,14 @@ const PROJECTS = [
     link: 'https://dribbble.com/shots/24840522-NatureNosh-Wholesale-supply-app',
   },
   {
+    title: 'Stackaroo',
+    image: stackaroo,
+    link: 'https://dribbble.com/shots/25895850-A-Cartoon-Themed-Landing-Page-for-Effortless-DevOps',
+  },
+  {
     title: 'Hawk-Eye Website',
     image: { desktop: hawkeye, mobile: hawkeyeMobile },
     link: 'https://dribbble.com/shots/25752521-HawkEye-Revolutionizing-RFP-Analysis-with-AI',
-  },
-  {
-    title: 'Inno-Creatives',
-    image: inno,
-    link: 'https://dribbble.com/shots/25868593-Landing-Page-for-an-agency-company',
   },
   {
     title: 'OneRythme Dashboards',
@@ -49,9 +49,9 @@ const PROJECTS = [
     link: 'https://dribbble.com/shots/26007618-Dashboard-Analysis',
   },
   {
-    title: 'Stackaroo',
-    image: stackaroo,
-    link: 'https://dribbble.com/shots/25895850-A-Cartoon-Themed-Landing-Page-for-Effortless-DevOps',
+    title: 'Inno-Creatives',
+    image: inno,
+    link: 'https://dribbble.com/shots/25868593-Landing-Page-for-an-agency-company',
   },
   {
     title: 'Chic Interiors',
