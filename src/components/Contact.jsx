@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Contact.css';
 import Button from './Button';
 import { FiArrowUpRight, FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
@@ -56,10 +56,21 @@ const SOCIALS = [
 ];
 
 const Contact = () => {
+  const [sending, setSending] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Enter in a text field submits, so the disabled button is not on its own
+    // enough to stop a second request going out while the first is in flight.
+    if (sending) return;
 
-    const formData = new FormData(e.target);
+    /* Held in a local rather than read back off the event after the await:
+       `reset()` runs once the request has resolved, and by then React has
+       finished with the synthetic event. */
+    const form = e.target;
+    const formData = new FormData(form);
+
+    setSending(true);
 
     try {
       const response = await fetch('https://formsubmit.co/ajax/oyassen43@gmail.com', {
@@ -72,12 +83,16 @@ const Contact = () => {
 
       if (response.ok) {
         toast.success('Message sent successfully!', TOAST_OPTIONS);
-        e.target.reset(); // Clear form
+        form.reset();
       } else {
         toast.error('Failed to send message. Please try again.', TOAST_OPTIONS);
       }
     } catch (error) {
       toast.error('An error occurred. Please try again later.', TOAST_OPTIONS);
+    } finally {
+      // In `finally` so a thrown request releases the button too — otherwise a
+      // dropped connection would leave it stuck spinning with no way back.
+      setSending(false);
     }
   };
 
@@ -180,8 +195,9 @@ const Contact = () => {
               variant="primary"
               className="contact__submit"
               icon={FiArrowUpRight}
+              loading={sending}
             >
-              Send message
+              {sending ? 'Sending…' : 'Send message'}
             </Button>
           </form>
         </div>

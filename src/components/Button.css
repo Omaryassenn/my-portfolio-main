@@ -99,3 +99,40 @@
     width: 100% !important;
   }
 }
+/* --- Busy / disabled ------------------------------------------------------- */
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Each variant's hover is a glow, which on a button that cannot be pressed
+   reads as an invitation. Neutralised for all four combinations at once. */
+.button:disabled:hover {
+  box-shadow: none;
+  background-image: none;
+}
+
+.dark-mode .secondary:disabled:hover,
+.light-mode .secondary:disabled:hover {
+  background: transparent;
+  backdrop-filter: none;
+}
+
+.button-icon--spinning {
+  animation: button-spin 0.7s linear infinite;
+}
+
+@keyframes button-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Slowed rather than stopped: this is the only thing on screen saying the
+   request is still in flight, so removing it leaves no feedback at all. */
+@media (prefers-reduced-motion: reduce) {
+  .button-icon--spinning {
+    animation-duration: 2.4s;
+  }
+}
