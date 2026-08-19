@@ -312,8 +312,7 @@ a.info-card:hover .info-card__go svg {
 
 .field:focus-within {
   border-color: rgba(var(--accent-color-rgb, 255, 70, 0), 0.5);
-  box-shadow: 0 0 0 1px rgba(var(--accent-color-rgb, 255, 70, 0), 0.18),
-    0 0 45px rgba(var(--accent-color-rgb, 255, 70, 0), 0.08);
+
 }
 
 .field__label {
@@ -326,9 +325,7 @@ a.info-card:hover .info-card__go svg {
   cursor: pointer;
 }
 
-.field:focus-within .field__label {
-  color: var(--accent);
-}
+
 
 .field__input {
   width: 100%;

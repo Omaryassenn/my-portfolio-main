@@ -49,7 +49,7 @@ const Hero = () => {
         <ScrollAnimation direction="up" delay={0.4} animateOnMount>
           <div className="hero-info">
             <p className="hero-description">
-              I'm a hybrid designer-developer who thrives at the intersection of design and code - ideas shipped as clean, scalable interfaces.
+            I DESIGN PRODUCTS THAT WORK FOR USERS, BUSINESS, AND THE PEOPLE WHO BUILD THEM. PRODUCT DESIGN SHAPED BY BUSINESS GOALS AND FRONTEND REALITY.
             </p>
             <div className="hero-buttons" role="group" aria-label="Call to action buttons">
               <Button

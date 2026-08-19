@@ -123,9 +123,8 @@ const About = () => {
 
           <div className="about__intro" data-reveal>
             <p>
-              I design the thing and then I build it. No handoff deck, no &ldquo;that&apos;s not
-              technically possible&rdquo; three weeks in — one person accountable for how it looks
-              and how it behaves.
+            I'M A PRODUCT DESIGNER WITH FRONTEND EXPERIENCE, DESIGNING ACROSS WEB AND MOBILE, FROM SaaS AND B2B PLATFORMS TO DASHBOARDS, AI, AND BEYOND.
+            I WORK CLOSELY WITH FRONTEND TEAMS TO BRIDGE DESIGN AND DEVELOPMENT, SOLVE IMPLEMENTATION CHALLENGES, AND SHIP BETTER EXPERIENCES.
             </p>
             <a href="/Omar-Yassen.pdf" download aria-label="Download my CV in PDF format">
               <Button variant="primary" icon={FiArrowUpRight} id="download-cv">

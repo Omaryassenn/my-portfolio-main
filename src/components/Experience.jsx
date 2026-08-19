@@ -6,63 +6,12 @@ import { getLenis, prefersReducedMotion } from '../lib/smoothScroll';
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* Grouped by the year a role started, roles inside a year in the order they
-   happened. `points` is a list because a role can have more than one thing
-   worth saying and flattening them into one sentence loses the distinction. */
+/* Newest first, and the roles inside each year likewise: the section reads
+   backwards through time, so a year whose own panel ran forwards would flip
+   the direction halfway down itself. `points` is a list because a role can
+   have more than one thing worth saying and flattening them into one sentence
+   loses the distinction. */
 const TIMELINE = [
-  {
-    year: '2023',
-    roles: [
-      {
-        date: 'Sep 2023 — Jul 2024',
-        title: 'Coding Instructor',
-        company: 'Techventure Academy',
-        points: ['Teaching Python basics, data structures, OOP, HTML and CSS to kids aged 10–18.'],
-      },
-    ],
-  },
-  {
-    year: '2024',
-    roles: [
-      {
-        date: 'Jun 2024 — Sep 2024',
-        title: 'Coding & UI/UX Instructor',
-        company: 'iSchool',
-        points: ['Teaching coding and UI/UX to kids aged 10–12.'],
-      },
-      {
-        date: 'Sep 2024 — Feb 2025',
-        title: 'UI/UX Designer',
-        company: 'Giza Systems',
-        points: [
-          'Worked on the Aoun SaaS platform, redesigning the Admin Portal to improve usability and fix UX issues, and designing the Applicant Portal using the DGA Design System.',
-        ],
-      },
-    ],
-  },
-  {
-    year: '2025',
-    roles: [
-      {
-        date: 'Mar 2025 — May 2025',
-        title: 'UI/UX Designer (Freelance)',
-        company: 'OneRythm',
-        points: [
-          'Designed modern, sleek dashboards focused on intuitive user experiences and real-time analytics for a Saudi-based startup.',
-        ],
-      },
-      {
-        date: 'Jul 2025 — Present',
-        title: 'Product Designer',
-        company: 'YOUXEL Technology',
-        current: true,
-        points: [
-          'Sole product designer, leading the design of TORUK from its early stages — creating dashboards, workflow builder features and core product experiences.',
-          'Collaborate closely with engineers and occasionally contribute to front-end implementation to ensure high-quality, consistent user experiences.',
-        ],
-      },
-    ],
-  },
   {
     year: '2026',
     roles: [
@@ -76,9 +25,66 @@ const TIMELINE = [
       },
     ],
   },
+  {
+    year: '2025',
+    roles: [
+      {
+        date: 'Jul 2025 — Present',
+        title: 'Product Designer',
+        company: 'YOUXEL Technology',
+        current: true,
+        points: [
+          'Sole product designer, leading the design of TORUK from its early stages — creating dashboards, workflow builder features and core product experiences.',
+          'Collaborate closely with engineers and occasionally contribute to front-end implementation to ensure high-quality, consistent user experiences.',
+        ],
+      },
+      {
+        date: 'Mar 2025 — May 2025',
+        title: 'UI/UX Designer (Freelance)',
+        company: 'OneRythm',
+        points: [
+          'Designed modern, sleek dashboards focused on intuitive user experiences and real-time analytics for a Saudi-based startup.',
+        ],
+      },
+    ],
+  },
+  {
+    year: '2024',
+    roles: [
+      {
+        date: 'Sep 2024 — Feb 2025',
+        title: 'UI/UX Designer',
+        company: 'Giza Systems',
+        points: [
+          'Worked on the Aoun SaaS platform, redesigning the Admin Portal to improve usability and fix UX issues, and designing the Applicant Portal using the DGA Design System.',
+        ],
+      },
+      {
+        date: 'Jun 2024 — Sep 2024',
+        title: 'Coding & UI/UX Instructor',
+        company: 'iSchool',
+        points: ['Teaching coding and UI/UX to kids aged 10–12.'],
+      },
+    ],
+  },
+  {
+    year: '2023',
+    roles: [
+      {
+        date: 'Sep 2023 — Jul 2024',
+        title: 'Coding Instructor',
+        company: 'Techventure Academy',
+        points: ['Teaching Python basics, data structures, OOP, HTML and CSS to kids aged 10–18.'],
+      },
+    ],
+  },
 ];
 
 const ROLE_COUNT = TIMELINE.reduce((sum, group) => sum + group.roles.length, 0);
+
+/* Read from the end, not from TIMELINE[0]: the list runs newest-first, so the
+   year the record *starts* at is the last one in it. */
+const FIRST_YEAR = TIMELINE[TIMELINE.length - 1].year;
 
 const pad = (n) => String(n).padStart(2, '0');
 
@@ -99,9 +105,12 @@ const canScrub = () =>
   !prefersReducedMotion() &&
   window.matchMedia(SCRUB_QUERY).matches;
 
-/* How much scrolling each year is worth, as a share of a viewport. Below about
-   half a viewport the years flick past faster than they can be read. */
-const YEAR_RUNWAY = 0.7;
+/* How much scrolling each year is worth, as a share of a viewport. At 0.7 a
+   year cost most of a screen's worth of wheel — around six notches — and four
+   of them in a row made the section feel like it was holding the page hostage.
+   Half a viewport is the floor: below it the years flick past faster than they
+   can be read, and the pin stops paying for itself. */
+const YEAR_RUNWAY = 0.5;
 
 const Experience = () => {
   const introRef = useRef(null);
@@ -326,7 +335,7 @@ const Experience = () => {
           </h2>
 
           <p className="xp-intro__meta">
-            {pad(ROLE_COUNT)} roles · {TIMELINE[0].year} — now
+            {pad(ROLE_COUNT)} roles · {FIRST_YEAR} — now
           </p>
 
           
